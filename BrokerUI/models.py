@@ -14,3 +14,14 @@ class BrokerProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class RealEstate(models.Model):
+
+    house_type = (('A', ''))
+    lat = models.FloatField()
+    lon = models.FloatField()
+    builtuparea = models.IntegerField()
+    carpetarea = models.IntegerField()
+    area = models.CharField()
+    address = models.TextField()
+    type = model
