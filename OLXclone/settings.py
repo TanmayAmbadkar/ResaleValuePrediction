@@ -79,11 +79,15 @@ WSGI_APPLICATION = 'OLXclone.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hoO4Hw4Djd',
+        'USER': 'hoO4Hw4Djd',
+        'PASSWORD':'LfGZvKgPwH',
+        'HOST': 'remotemysql.com',
+        'PORT': '3306',
         'OPTIONS': {
-            'read_default_file':'my.cnf',
-            'init_command': 'SET default_storage_engine=INNODB',
-        },
-    }
+        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
+}
 }
 
 
