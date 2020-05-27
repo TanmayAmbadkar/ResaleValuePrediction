@@ -6,7 +6,9 @@ class SellerProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete = models.CASCADE)
 
-    phone_number = models.CharField(max_length = 15)
+    #additional
+
+    phone_number = models.IntegerField(max_length=10)
 
     def __str__(self):
         return self.user.username
