@@ -8,7 +8,7 @@ class BrokerProfile(models.Model):
 
     #additional
 
-    phone_number = models.IntegerField(max_length = 10)
+    phone_number = models.CharField(max_length = 10)
 
     #profile_pic = models.ImageField(upload_to = 'profile_pics', blank = True)
 
