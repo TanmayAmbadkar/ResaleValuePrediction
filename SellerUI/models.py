@@ -10,7 +10,7 @@ class SellerProfile(models.Model):
 
     #additional
 
-    phone_number = models.IntegerField(max_length=10)
+    phone_number = models.CharField(max_length=10)
 
     def __str__(self):
         return self.user.username
