@@ -17,13 +17,19 @@
              {% for vehicle in object_list %}
              <div class="post-entry-horzontal">
                <a href="{% url 'vehicle_detail' pk=vehicle.pk %}">
-
+               <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url({% static 'images/car.jpg' %});"></div>
                  <span class="text">
                      <div class="post-meta">
-                       <span class="author mr-2">{{vehicle.seller.user.first_name}} {{vehicle.seller.user.last_name}}</span>
-                       <span class="mr-2">created: {{vehicle.created_date}}</span>
+                       <span class="author mr-2">Seller: {{vehicle.seller.user.first_name}} {{vehicle.seller.user.last_name}}</span>
+                       </br>
+                       <span class="mr-2">Created: {{vehicle.created_date}}</span>
+                       {% if not vehicle.published_date %}
+                       <span class='mr-2'>Not Published</span>
+                       {% endif %}
                      </div>
-                     <h2>{{ vehicle.Vmodel }}</h2>
+                     <h2>Make: {{vehicle.make}}</h2>
+                     <h2>Model: {{ vehicle.Vmodel }}</h2>
+                     <h2>Price: Rs. {{ vehicle.price }}</h2>
                   </span>
                 </a>
 	          </div>
