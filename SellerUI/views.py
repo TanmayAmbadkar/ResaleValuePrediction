@@ -19,14 +19,16 @@ class HomeView(TemplateView):
 class CreateVehicleView(LoginRequiredMixin, CreateView):
 
     template_name = 'SellerUI/vehicle_form.html'
-    success_url = reverse_lazy('vehicle_draft_list')
+    success_url = reverse_lazy('home')
     login_url = '/login/'
     form_class = VehicleForm
     model = Vehicle
 
     def form_valid(self, form):
-
-        form.instance.seller = Profile.objects.filter(username = self.request.user.usernmae)
+        profile = Profile.objects.get_or_create(user = self.request.user)[0]
+        print(profile)
+        form.instance.seller = profile
+        form.instance.save()
         return super().form_valid(form)
 
 class VehicleUpdateView(LoginRequiredMixin, UpdateView):
@@ -49,13 +51,13 @@ class VehicleListView(ListView):
 class DraftListView(LoginRequiredMixin, ListView):
 
     login_url = '/login/'
-    redirect_field_name = 'SellerUI/vehicle_draft_list.html'
     model = Vehicle
-    template_name = 'vehicle_draft_list.html'
+    template_name = 'SellerUI/vehicle_draft_list.html'
+    context_object_name = 'object_list'
 
     def get_queryset(self):
-        return Vehicle.objects.filter(seller=self.request.user)
-
+        profile = Profile.objects.filter(user = self.request.user)[0]
+        return Vehicle.objects.filter(seller = profile)
 
 class CreateUserView(CreateView):
 
@@ -70,8 +72,8 @@ class CreateUserView(CreateView):
 
 class CreateProfileView(CreateView):
 
-    template_name = 'SellerUI/seller_form.html'
-    success_url = reverse_lazy('login')
+    template_name = 'SellerUI/profile_form.html'
+    success_url = reverse_lazy('home')
     form_class = ProfileForm
     model = Profile
 

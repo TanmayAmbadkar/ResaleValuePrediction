@@ -6,16 +6,18 @@
     <div class="container">
         <div class="row mb-4">
             <div class="col-md-6">
-                <h1>New User</h1>
+                <h1>Fill in your Profile</h1>
             </div>
         </div>
         <div class="row blog-entries">
             <div class="col-md-12 col-lg-8 main-content">
+                <h1>Profile Details</h1>
                 <form class="post-form" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{form|crispy}}
                     </br>
                     <button type="submit" class = 'save btn btn default' name="button">Save</button>
+
                 </form>
             </div>
         </div>
