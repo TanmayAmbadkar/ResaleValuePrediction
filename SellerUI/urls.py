@@ -9,6 +9,7 @@ urlpatterns = [
     path('drafts/', DraftListView.as_view(), name = 'vehicle_draft_list'),
     path('vehicle/new/', CreateVehicleView.as_view(), name = 'vehicle_new'),
     path('vehicle/<int:pk>/edit', VehicleUpdateView.as_view(), name = 'vehicle_edit'),
-    path('seller/new/', CreateSellerView.as_view(), name = 'seller_new'),
-    path('seller/<int:pk>', SellerDetailView.as_view(), name = 'seller_detail'),
+    path('user/new/', CreateUserView.as_view(), name = 'user_new'),
+    path('seller/new/', CreateProfileView.as_view(), name = 'seller_new'),
+    path('seller/<int:pk>', ProfileDetailView.as_view(), name = 'seller_detail'),
 ]

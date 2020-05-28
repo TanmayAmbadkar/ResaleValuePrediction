@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'SellerUI',
     'BrokerUI',
     'django_summernote',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,17 @@
+{% extends "SellerUI/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <h1>New User</h1>
+    <form class="post-form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form|crispy}}
+        </br>
+        <button type="submit" class = 'save btn btn default' name="button">Save</button>
+
+    </form>
+
+
+
+{% endblock %}

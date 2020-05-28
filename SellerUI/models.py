@@ -4,12 +4,16 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 # Create your models here.
 
-class SellerProfile(models.Model):
+class Profile(models.Model):
 
+    user_types = (
+        ('S', 'Seller'),
+        ('C', 'Customer'),
+        ('B', 'Broker'))
     user = models.OneToOneField(User, on_delete = models.CASCADE)
 
     phone_number = models.CharField(max_length=10)
-    type = 'seller'
+    type = models.CharField(max_length = 1, choices = user_types)
 
     def __str__(self):
         return self.user.username
@@ -21,7 +25,7 @@ class Vehicle(models.Model):
         ('P', 'PETROL'),
         ('D', 'DIESEL'),
         ('C', 'CNG'))
-    seller = models.ForeignKey('SellerProfile', on_delete = models.CASCADE)
+    seller = models.ForeignKey('Profile', on_delete = models.CASCADE)
     Vmodel = models.CharField(max_length = 50)
     make = models.CharField(max_length = 20)
     desc = models.TextField()

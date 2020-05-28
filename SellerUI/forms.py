@@ -2,18 +2,19 @@ from django import forms
 from SellerUI.models import *
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
+class UserForm(forms.ModelForm):
 
-class SellerProfileForm(forms.ModelForm):
+    password  = forms.CharField(widget = forms.PasswordInput())
+    
+    class Meta():
+        model = User
+        fields = ('first_name', 'last_name', 'username', 'email', 'password' )
 
-    first_name = forms.CharField(widget = forms.TextInput())
-    last_name = forms.CharField(widget = forms.TextInput())
-    username = forms.CharField(widget = forms.TextInput())
-    email = forms.EmailField(widget = forms.TextInput())
-    password  = forms.CharField(widget = forms.TextInput())
+class ProfileForm(forms.ModelForm):
 
     class Meta():
-        model = SellerProfile
-        fields = ('first_name', 'last_name', 'username', 'email', 'password', 'phone_number')
+        model = Profile
+        fields = ('phone_number', 'type', )
 
 class VehicleForm(forms.ModelForm):
 
