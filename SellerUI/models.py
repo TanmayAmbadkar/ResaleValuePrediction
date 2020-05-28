@@ -8,9 +8,8 @@ class SellerProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete = models.CASCADE)
 
-    #additional
-
     phone_number = models.CharField(max_length=10)
+    type = 'seller'
 
     def __str__(self):
         return self.user.username

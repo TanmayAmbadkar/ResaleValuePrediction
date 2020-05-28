@@ -14,7 +14,7 @@ from django.contrib.auth import login, authenticate
 
 class HomeView(TemplateView):
 
-    template_name = 'home.html'
+    template_name = 'SellerUI/home.html'
 
 class CreateVehicleView(LoginRequiredMixin, CreateView):
 

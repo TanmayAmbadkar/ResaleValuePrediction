@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
+from django.contrib.auth import views
+import OLXclone.settings as settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('SellerUI.urls')),
+    path('summernote/', include('django_summernote.urls')),
+    path('login/', views.LoginView.as_view(), name = 'login'),
+    path('accounts/logout/', views.LogoutView.as_view(), name = 'logout', kwargs = {'next_page':'home'}),
 ]
