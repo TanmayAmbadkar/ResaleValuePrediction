@@ -64,7 +64,7 @@
                     <li class="nav-item">
                       <a class="nav-link" href="#" rel="noreferrer">Real Estate</a>
                     </li>
-                    {% if user.is_authenticated and user.type != 'Customer' %}
+                    {% if user.is_authenticated %}
 
                     <li class="nav-item">
                       <a class="nav-link disabled" href="#">Welcome {{user.first_name}} {{user.last_name}}</a>

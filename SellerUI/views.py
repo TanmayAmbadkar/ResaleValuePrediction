@@ -14,9 +14,18 @@ from django.contrib.auth import login, authenticate
 
 class HomeView(TemplateView):
 
+    #TemplateView is the most basic view. By default, it just loads a page set as its template_name
+    #We can add a context_dict using get_context_data to pass values to the page
     template_name = 'SellerUI/home.html'
 
 class CreateVehicleView(LoginRequiredMixin, CreateView):
+
+    #The createview helps create a new object for the model specified. LoginRequiredMixin is same is decorators
+    #the form class loads the form from which data is collected
+    #After form validation, we load the home page using reverse_lazy
+    # in the form validation, I am finding the Profile of the user who filled to form.
+    #This is required because I have to attach the vehicle to the Seller, and so I am attaching it to the form.instance which is vehicle_edit
+    # Vehicle.seller = profile
 
     template_name = 'SellerUI/vehicle_form.html'
     success_url = reverse_lazy('home')
@@ -33,6 +42,9 @@ class CreateVehicleView(LoginRequiredMixin, CreateView):
 
 class VehicleUpdateView(LoginRequiredMixin, UpdateView):
 
+    #The update view just changes the parameters of an already created object.
+    # We specify <int:pk> in the url to get the specific object to update
+
     template_name = 'SellerUI/vehicle_form.html'
     success_url = reverse_lazy('vehicle_draft_list')
     login_url = '/login/'
@@ -41,14 +53,23 @@ class VehicleUpdateView(LoginRequiredMixin, UpdateView):
 
 class VehicleDetailView(DetailView):
 
+    #Simply sends a single object pk = <int:pk> to the page.
+    #the context dict is a single object, which could be changed using get_context_data
+
     model = Vehicle
 
 class VehicleListView(ListView):
+    #Simply sends all objects of the model to page.
+    #the context dict is aall objects, which could be changed using get_context_data
 
     model = Vehicle
 
 
 class DraftListView(LoginRequiredMixin, ListView):
+
+    #to get the draft vehicles only for the seller that has requested it
+    #I have selected the profile from the request.user, then selected all vehicle
+    # objects made by that user and send it to the context_dict
 
     login_url = '/login/'
     model = Vehicle
@@ -61,6 +82,9 @@ class DraftListView(LoginRequiredMixin, ListView):
 
 class CreateUserView(CreateView):
 
+    #Creates new user, no profile.
+    #To set password, i have to use the set_password method
+
     template_name = 'SellerUI/user_form.html'
     success_url = reverse_lazy('home')
     form_class = UserForm
@@ -71,6 +95,11 @@ class CreateUserView(CreateView):
         return super().form_valid(form)
 
 class CreateProfileView(CreateView):
+
+    #This is second step in registration, which sets the profile, whether customer,
+    # buyer or seller. Form has options available.
+    # I have to set the foreign key so I am getting the user who is registering and
+    # attaching it to the foreign key
 
     template_name = 'SellerUI/profile_form.html'
     success_url = reverse_lazy('home')
