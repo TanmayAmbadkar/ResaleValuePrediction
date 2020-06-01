@@ -86,13 +86,16 @@ class CreateUserView(CreateView):
     #To set password, i have to use the set_password method
 
     template_name = 'SellerUI/user_form.html'
-    success_url = reverse_lazy('home')
     form_class = UserForm
     model = User
     def form_valid(self, form):
 
         form.instance.set_password(form.instance.password)
-        return super().form_valid(form)
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        form.instance.save()
+        login(self.request, form.instance)
+        return redirect('profile_new')
 
 class CreateProfileView(CreateView):
 
@@ -108,7 +111,8 @@ class CreateProfileView(CreateView):
 
     def form_valid(self, form):
 
-        form.instance.user = User.objects.filter(username = self.request.user.username)[0]
+        #form.instance.user = User.objects.filter(username = self.request.user.username)[0]
+        form.instance.user =self.request.user
         return super().form_valid(form)
 
 class ProfileDetailView(DetailView, LoginRequiredMixin):

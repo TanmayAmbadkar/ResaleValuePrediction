@@ -10,6 +10,6 @@ urlpatterns = [
     path('vehicle/new/', CreateVehicleView.as_view(), name = 'vehicle_new'), # Add new vehicle
     path('vehicle/<int:pk>/edit', VehicleUpdateView.as_view(), name = 'vehicle_edit'), #Whenever a seller wants to edit details of a particular vehicle
     path('user/new/', CreateUserView.as_view(), name = 'user_new'), #Creates a new user (unspecified)
-    path('seller/new/', CreateProfileView.as_view(), name = 'seller_new'), #Creates a profile for the user, helps him select whether User, Seller, Customer
-    path('seller/<int:pk>', ProfileDetailView.as_view(), name = 'seller_detail'), #To view detials of the user
+    path('profile/new/', CreateProfileView.as_view(), name = 'profile_new'), #Creates a profile for the user, helps him select whether User, Seller, Customer
+    path('profile<int:pk>', ProfileDetailView.as_view(), name = 'profile_detail'), #To view detials of the user
 ]
