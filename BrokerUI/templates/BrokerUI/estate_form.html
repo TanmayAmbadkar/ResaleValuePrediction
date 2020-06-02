@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h2> Welcome {{user.first_name}}</h2>
+    <h1>New Estate</h1>
+    {% if user.is_authenticated%}
+        <form class='post-form' method='POST'>
+            {% csrf_token%}
+            {{ form.as_p }}
+            <button class='save btn btn-primary'>Save</button>
+        </form>
+        {% if form.errors %}
+        {{form.errors}}
+        {% endif %}
+        {% if messages %}
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+            <a href="{% url 'home' %}">Return to home</a>
+        {% endif %}
+        <h3>Change user <a href="{% url 'logout' %}">Logout</a></h3>
+    {% else %}
+        you are not authenticated
+        <button type='button'><a href="{% url 'login' %}">Login</a></button>
+    {% endif %}
+    
+</body>
+</html>

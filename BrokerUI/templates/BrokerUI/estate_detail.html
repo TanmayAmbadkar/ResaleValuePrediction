@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Broker Name : <a href="{% url 'broker_detail' pk=estate.broker.pk %}">{{estate.broker.user.first_name}} {{estate.broker.user.last_name}}</a></h3>
+    <h3>Broker type : {{estate.broker.type}}</h3>
+    <h3>Broker phone_number : {{estate.broker.phone_number}}</h3>
+    <h3>price : {{estate.price}}</h3>
+    <h3>Bedroom : {{estate.bedroom}}</h3>
+    <h3>Bathroom : {{estate.bathroom}}</h3>
+    <h3>Carpet Area : {{estate.carpetarea}}</h3>
+    <h3>Builtup Area : {{estate.builtuparea}}</h3>
+
+    <button type="button"><a href="{% url 'estate_update' pk=estate.pk %}">Update</a></button>
+    <button type="button"><a href="{% url 'new_user' %}">Create Profile</a></button>
+</body>
+</html>
