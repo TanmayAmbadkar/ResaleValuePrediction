@@ -1,5 +1,5 @@
 from django import forms
-from myapp.models import Profile,Estate
+from BrokerUI.models import Profile,Estate,Prediction
 from django.contrib.auth.models import User
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -15,3 +15,8 @@ class EsateForm(forms.ModelForm):
     class Meta:
         model = Estate
         fields = ['lat','lon','bedroom','bathroom','carpetarea','builtuparea','price']
+
+class PredictionForm(forms.ModelForm):
+    class Meta:
+        model=Prediction
+        fields='__all__'

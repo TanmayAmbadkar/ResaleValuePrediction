@@ -1,14 +1,22 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView,ListView,DetailView,CreateView,UpdateView
-from BrokerUI.forms import ProfileForm,UserForm,EsateForm
-from BrokerUI.models import Profile,Estate
+from django.views.generic import TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView
+from BrokerUI.forms import ProfileForm,UserForm,EsateForm,PredictionForm
+from BrokerUI.models import Profile,Estate,Prediction
+from django.core import serializers
+from rest_framework import viewsets
+from django.core import serializers
+from rest_framework.response import Response
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db import IntegrityError
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.contrib.auth import authenticate,login
+from BrokerUI.serializers import PredictionSerializers
+import joblib
+import pandas as pd
+import numpy as np
 
 
 class ProfileListView(ListView):
@@ -102,7 +110,7 @@ class BrokerDetailView(DetailView):
     model = Profile
     context_object_name = 'profile'
     # print(Test.pk)
-    template_name='BrokerUI/broker_detail.html'
+    template_name= 'BrokerUI/broker_detail.html'
 
 class BrokerUpdateView(UpdateView):
     model = Profile
@@ -113,3 +121,44 @@ class EstateDeleteView(DeleteView):
     model = Estate
     template_name = 'BrokerUI/estate_delete.html'
     success_url = reverse_lazy('home')
+
+
+# ['spell', 'price', 'sublocality_level', 'lat', 'long', 'type', 'rooms',
+    #    'bathrooms', 'furnished', 'constructionstatus', 'ft', 'carpetarea',
+    # #    'project'],
+
+def processing(df):
+    regressor = joblib.load('BrokerUI/regressor_model.pkl')
+    scalar_for_params=joblib.load('BrokerUI/scalar_for_params.pkl')
+    scalar_for_price=joblib.load('BrokerUI/scalar_for_price.pkl')
+    one_hot_encoder=joblib.load('BrokerUI/one_hot_encoder.pkl')
+    columns_to_fit=['spell','sublocality_level','rooms','bathrooms','furnished','constructionstatus','project','type']
+    t=pd.DataFrame(one_hot_encoder.transform(df[columns_to_fit]))
+    df.drop(columns_to_fit,axis=1,inplace=True)
+    df=pd.concat([df,t],axis=1)
+    columns_to_scale = ['lat', 'long', 'ft', 'carpetarea']
+    df[columns_to_scale]=scalar_for_params.transform(df[columns_to_scale])
+    df.drop(['lat','long'],axis=1,inplace=True)
+    output = regressor.predict(df)
+    return scalar_for_price.inverse_transform(output)
+
+def EstatePricePrediction(request):
+    if request.method=='POST':
+        form=PredictionForm(request.POST)
+        if form.is_valid():
+            mydict=(request.POST).dict()
+            df = pd.DataFrame(mydict,index=[0])
+            columns_to_fit=['spell','sublocality_level','rooms','bathrooms','furnished','constructionstatus','project','type']
+            df['rooms']=np.float64(df['rooms'])
+            df['bathrooms']=np.float64(df['bathrooms'])
+            df=df.loc[:,'spell':]
+            print(df['rooms'].dtype)
+            # print(df['spell'])
+            output = processing(df)
+            messages.success(request,'Output Status: Rs {}'.format(np.round(output[0],2)))
+
+
+    form=PredictionForm()
+    return render(request,'BrokerUI/predform.html',{'form':form})
+
+

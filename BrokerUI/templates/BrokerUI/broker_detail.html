@@ -15,11 +15,12 @@
                 <h3>type : {{profile.type}}</h3>
             {% endif %}
             <button type="button"><a href="{% url 'broker_update' pk=profile.pk %}">Update</a></button>
+            <button type="button"><a href="{% url 'home' %}">Home</a></button>
 
     {% else %}
     <h2>Sorry, you are not authorized to continue your query</h2>
     <h2>Brokers with only their estates can update their objects</h2>
-    <button type="button"><a href="{% url 'estate_detail' pk=estate.pk %}">Continue</a></button>
+    <button type="button"><a href="{% url 'home' %}">Continue</a></button>
     {% endifequal %}
 
     
