@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from myapp import views
+from BrokerUI import views
 from django.urls import path
 
 urlpatterns = [
@@ -11,4 +11,5 @@ urlpatterns = [
     path('estate/update/<int:pk>',views.EstateUpdateView.as_view(),name='estate_update'),
     url('^broker/(?P<pk>[0-100]+)$',views.BrokerDetailView.as_view(),name='broker_detail'),
     path('broker/update/<int:pk>',views.BrokerUpdateView.as_view(),name='broker_update'),
+    path('estate_delete/<int:pk>/remove',views.EstateDeleteView.as_view(),name='estate_delete')
 ]

@@ -16,5 +16,8 @@
 
     <button type="button"><a href="{% url 'estate_update' pk=estate.pk %}">Update</a></button>
     <button type="button"><a href="{% url 'new_user' %}">Create Profile</a></button>
+    {% ifequal estate.broker.user.username user.username %}
+    <button type="button"><a href="{% url 'estate_delete' pk=estate.pk%}">Remove</a></button>
+    {% endifequal%}
 </body>
 </html>

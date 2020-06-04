@@ -102,9 +102,14 @@ class BrokerDetailView(DetailView):
     model = Profile
     context_object_name = 'profile'
     # print(Test.pk)
-    template_name='myapp/broker_detail.html'
+    template_name='BrokerUI/broker_detail.html'
 
 class BrokerUpdateView(UpdateView):
     model = Profile
     fields=['phone_number']
-    template_name = 'myapp/broker_update.html'
+    template_name = 'BrokerUI/broker_update.html'
+
+class EstateDeleteView(DeleteView):
+    model = Estate
+    template_name = 'BrokerUI/estate_delete.html'
+    success_url = reverse_lazy('home')

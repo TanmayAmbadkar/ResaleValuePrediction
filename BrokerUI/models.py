@@ -21,12 +21,16 @@ class Profile(models.Model):
     choices = [('U','User'),('S','Seller'),('B','Broker')]
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     type=models.CharField(max_length=1,choices=choices,default='none')
-    phone_number = models.CharField(max_length=5)
+    phone_number = models.CharField(max_length=10)
     is_user= models.BooleanField(default=False)
     is_seller = models.BooleanField(default=False)
     is_broker = models.BooleanField(default=False)
     def __str__(self):
         return self.user.first_name
+
+    
+    def get_absolute_url(self):
+        return reverse('broker_detail',kwargs={'pk':self.pk})
 
 class Estate(models.Model):
     broker = models.ForeignKey(Profile,on_delete=models.CASCADE)
