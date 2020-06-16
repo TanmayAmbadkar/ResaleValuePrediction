@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<br>
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type='submit' value="Submit">
+    </form>
+    </br>
+    {% for message in messages%}
+        {{message}}</br>
+    {% endfor %}
+    </br>
+    <button type="button"><a href="home">Home</a></button>
+    
+</body>
+</html>

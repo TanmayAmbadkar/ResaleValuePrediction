@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Registration Form</h3></br>
+        {% if form.errors %}
+            <p>Your username and password did not match</p>
+        {% endif %}
+        <form action="{% url 'login' %}" method='POST'>
+            
+            {% csrf_token %}
+            {{form.as_p }}
+            <input type="submit" class='btn btn-primary' value='login'>
+            <!-- <input type='hidden' name='next' value='{{next}}'> -->
+        </form>
+    <h3>New User : <a href="{% url 'user_details' %}">REGISTER</a></h3>
+</body>
+</html>

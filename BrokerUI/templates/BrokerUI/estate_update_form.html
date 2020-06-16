@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+        {% ifequal estate.broker.user.username user.username %}
+            {% if estate.broker.is_broker %}
+                <form method='POST'>
+                    
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type='submit' value="save">
+                </form>
+            {% endif %}
+            <h3>Only brokers can update the perform updation</h3>
+
+    {% else %}
+    <h2>Sorry, you are not authorized to continue your query</h2>
+    <h2>Brokers with only their estates can update their objects</h2>
+    <button type="button"><a href="{% url 'estate_detail' pk=estate.pk %}">Continue</a></button>
+    {% endifequal %}
+</body>
+</html>

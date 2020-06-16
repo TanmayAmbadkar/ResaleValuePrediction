@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form class='post-form' method='POST'>
+        {% csrf_token%}
+        {{ form.as_p }}
+        <button class='save btn btn-primary'>Save</button>
+    </form>
+    {% if form.errors %}
+    {{form.errors}}
+    {% endif %}
+    <button type='button'><a href="{% url 'new_user' %}"></a></button>
+    
+</body>
+</html>

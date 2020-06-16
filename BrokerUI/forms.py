@@ -1,11 +1,22 @@
 from django import forms
-from django.contrib.auth.models import user
-from BrokerUI.models import *
+from BrokerUI.models import Profile,Estate,Prediction
+from django.contrib.auth.models import User
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['type','phone_number']
 
-class BrokerProfileInfoForm(forms.ModelForm):
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('first_name', 'last_name', 'username', 'email', 'password' )
 
-    password = forms.CharField(widget = forms.PasswordInput())
+class EsateForm(forms.ModelForm):
+    class Meta:
+        model = Estate
+        fields = ['lat','lon','bedroom','bathroom','carpetarea','builtuparea','price']
 
-    class Meta():
-        model = BrokerProfile
-        fields = ('firstname', 'lastname','username', 'email', 'password','phone_number')
+class PredictionForm(forms.ModelForm):
+    class Meta:
+        model=Prediction
+        fields='__all__'
