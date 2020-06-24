@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'BrokerUI/estate_list.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
     <h3>Registration Form</h3></br>
         {% if form.errors %}
             <p>Your username and password did not match</p>
@@ -12,10 +8,10 @@
         <form action="{% url 'login' %}" method='POST'>
 
             {% csrf_token %}
-            {{form.as_p }}
+            {{form|crispy}}
+            </br>
             <input type="submit" class='btn btn-primary' value='login'>
-            <!-- <input type='hidden' name='next' value='{{next}}'> -->
         </form>
     <h3>New User : <a href="{% url 'new_user' %}">REGISTER</a></h3>
-</body>
-</html>
+
+{% endblock %}
