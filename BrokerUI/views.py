@@ -49,7 +49,7 @@ class ProfileCreateView(LoginRequiredMixin,CreateView):
 class CreateUserView(CreateView):
 
     template_name = 'BrokerUI/user_form.html'
-    success_url = reverse_lazy('new_user')
+    success_url = reverse_lazy('new_profile')
     form_class = UserForm
     model = User
     def form_valid(self, form):

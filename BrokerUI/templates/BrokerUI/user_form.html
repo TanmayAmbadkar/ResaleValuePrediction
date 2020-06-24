@@ -1,9 +1,10 @@
 {% extends 'BrokerUI/estate_list.html' %}
+{% load crispy_forms_tags %}
 
 {% block content%}
     <form class='post-form' method='POST'>
         {% csrf_token%}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button class='save btn btn-primary'>Save</button>
     </form>
     {% if form.errors %}
