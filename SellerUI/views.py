@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from SellerUI.models import *
+from BrokerUI.models import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import TemplateResponseMixin
 from django.contrib.auth.decorators import login_required
@@ -79,7 +80,7 @@ class DraftListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         profile = Profile.objects.filter(user = self.request.user)[0]
         return Vehicle.objects.filter(seller = profile)
-
+'''
 class CreateUserView(CreateView):
 
     #Creates new user, no profile.
@@ -119,3 +120,4 @@ class ProfileDetailView(DetailView, LoginRequiredMixin):
 
     model = Profile
     login_url = '/login/'
+'''

@@ -36,18 +36,9 @@ class ProfileCreateView(LoginRequiredMixin,CreateView):
         print(self.request.user.username)
         print(form.instance.type)
         form.instance.user = User.objects.filter(username=self.request.user.username)[0]
-        if (form.instance.type == 'U'):
-            form.instance.is_user = True
-        if (form.instance.type == 'B'):
-            form.instance.is_broker = True
-        if (form.instance.type == 'S'):
-            form.instance.is_seller = True    
-        print(form.instance.is_broker)
-        print(form.instance.is_user)
-        print(form.instance.is_seller) 
         username = self.request.user.username
         password = self.request.user.password
-        print(username,password)
+        
         # t=form.save()
         try:
             return super().form_valid(form)
@@ -160,5 +151,3 @@ def EstatePricePrediction(request):
 
     form=PredictionForm()
     return render(request,'BrokerUI/predform.html',{'form':form})
-
-

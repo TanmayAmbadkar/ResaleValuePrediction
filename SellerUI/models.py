@@ -2,8 +2,10 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.models import User
+from BrokerUI.models import *
 # Create your models here.
 
+'''
 class Profile(models.Model):
 
     user_types = (
@@ -17,6 +19,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+'''
 
 class Vehicle(models.Model):
 
@@ -25,7 +28,7 @@ class Vehicle(models.Model):
         ('P', 'PETROL'),
         ('D', 'DIESEL'),
         ('C', 'CNG'))
-    seller = models.ForeignKey('Profile', on_delete = models.CASCADE)
+    seller = models.ForeignKey('BrokerUI.Profile', on_delete = models.CASCADE)
     Vmodel = models.CharField(max_length = 50)
     make = models.CharField(max_length = 20)
     desc = models.TextField()

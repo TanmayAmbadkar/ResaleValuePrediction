@@ -1,6 +1,7 @@
 from django import forms
 from BrokerUI.models import Profile,Estate,Prediction
 from django.contrib.auth.models import User
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
