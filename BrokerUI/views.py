@@ -64,7 +64,7 @@ class CreateUserView(CreateView):
 class CreateEstateForm(CreateView):
     template_name = 'BrokerUI/estate_form.html'
     success_url = reverse_lazy('home')
-    form_class = EsateForm
+    form_class = EstateForm
     model = Estate
 
     def form_valid(self,form):
@@ -113,10 +113,6 @@ class EstateDeleteView(DeleteView):
     success_url = reverse_lazy('home')
 
 
-# ['spell', 'price', 'sublocality_level', 'lat', 'long', 'type', 'rooms',
-    #    'bathrooms', 'furnished', 'constructionstatus', 'ft', 'carpetarea',
-    # #    'project'],
-
 def processing(df):
     regressor = joblib.load('BrokerUI/regressor_model.pkl')
     scalar_for_params=joblib.load('BrokerUI/scalar_for_params.pkl')
@@ -131,6 +127,7 @@ def processing(df):
     df.drop(['lat','long'],axis=1,inplace=True)
     output = regressor.predict(df)
     return scalar_for_price.inverse_transform(output)
+
 
 def EstatePricePrediction(request):
     if request.method=='POST':
