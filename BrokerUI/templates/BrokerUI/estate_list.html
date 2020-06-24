@@ -28,8 +28,12 @@
                     <h3 class="float-right font-color">Welcome {{user.first_name}}</h3>
                     <h5 right-align> <a href="{% url 'logout' %}">Logout</a></h5>
                 {% else %}
-                    <button class="btn btn-outline bigger-font" type="button"><a href="{% url 'login' %}">Login</a></button>
-                    <button class="btn btn-outline bigger-font right-align" type="button"><a href="{% url 'new_user' %}">SignUp</a></button>
+                    <a href="{% url 'login' %}">
+                        <button class="btn btn-outline bigger-font" type="button">Login</button>
+                    </a>
+                    <a href="{% url 'new_user' %}">
+                        <button class="btn btn-outline bigger-font right-align" type="button">SignUp</button>
+                    </a>
                 {% endif%}
             </div>
 
