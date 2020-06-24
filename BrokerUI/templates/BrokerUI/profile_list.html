@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'BrokerUI/estate_list.html' %}
+
+{% block content%}
     <h2>List of the available users</h2>
     {% for e in profile_list%}
     <h4>Username : <span>{{e.user.username}}</span></h4>
@@ -12,5 +8,4 @@
         <h4>No users registered yet</h4>
     {% endfor %}
     <button type='button'><a href="{% url 'new_user' %}">New User</a></button>
-</body>
-</html>
+{% endblock %}

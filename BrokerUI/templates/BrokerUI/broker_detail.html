@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'BrokerUI/estate_list.html' %}
+
+{% block content%}
     {% ifequal profile.user.username user.username %}
             {% if profile.is_broker %}
                 <h3>First name : {{profile.user.first_name}}</h3>
@@ -22,7 +18,4 @@
     <h2>Brokers with only their estates can update their objects</h2>
     <button type="button"><a href="{% url 'home' %}">Continue</a></button>
     {% endifequal %}
-
-    
-</body>
-</html>
+{% endblock %}

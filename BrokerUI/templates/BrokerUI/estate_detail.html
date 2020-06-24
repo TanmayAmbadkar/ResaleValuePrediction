@@ -1,23 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
-    <h3>Broker Name : <a href="{% url 'broker_detail' pk=estate.broker.pk %}">{{estate.broker.user.first_name}} {{estate.broker.user.last_name}}</a></h3>
-    <h3>Broker type : {{estate.broker.type}}</h3>
-    <h3>Broker phone_number : {{estate.broker.phone_number}}</h3>
-    <h3>price : {{estate.price}}</h3>
-    <h3>Bedroom : {{estate.bedroom}}</h3>
-    <h3>Bathroom : {{estate.bathroom}}</h3>
-    <h3>Carpet Area : {{estate.carpetarea}}</h3>
-    <h3>Builtup Area : {{estate.builtuparea}}</h3>
+{% extends 'BrokerUI/estate_list.html' %}
 
-    <button type="button"><a href="{% url 'estate_update' pk=estate.pk %}">Update</a></button>
-    <button type="button"><a href="{% url 'new_user' %}">Create Profile</a></button>
+{% block content%}
+    <h3><span style="color: #d1d7e0; font-weight: bolder;">Broker Name :</span> <a href="{% url 'broker_detail' pk=estate.broker.pk %}">{{estate.broker.user.first_name}} {{estate.broker.user.last_name}}</a></h3>
+    <!-- <h3><span style="color: #d1d7e0; font-weight: bolder;">Broker type : </span>{{estate.broker.type}}</h3> -->
+    <h3><span style="color: #d1d7e0; font-weight: bolder;">Broker phone_number : </span><span  style="color: #e4e96b;">{{estate.broker.phone_number}}</span></h3>
+    <h3><span style="color: #d1d7e0; font-weight: bolder;">price : </span><span  style="color: #e4e96b;">{{estate.price}}</span></h3>
+    <h3><span style="color: #d1d7e0; font-weight: bolder;">Bedroom : </span><span  style="color: #e4e96b;">{{estate.bedroom}}</span></h3>
+    <h3><span style="color: #d1d7e0; font-weight: bolder;">Bathroom : </span><span  style="color: #e4e96b;">{{estate.bathroom}} </span></h3>
+    <h3><span style="color: #d1d7e0; font-weight: bolder;">Carpet Area : </span><span  style="color: #e4e96b;">{{estate.carpetarea}} ft</span></h3>
+    <h3><span style="color: #d1d7e0; font-weight: bolder;">Builtup Area : </span><span  style="color: #e4e96b;">{{estate.builtuparea}} ft</span></h3>
+</br>
     {% ifequal estate.broker.user.username user.username %}
-    <button type="button"><a href="{% url 'estate_delete' pk=estate.pk%}">Remove</a></button>
+    <button class='btn btn-outline'><a href="{% url 'estate_update' pk=estate.pk %}">Update</a></button>
+    <!-- <button type="button" class='btn btn-detail'><a href="{% url 'new_user' %}">Create Profile</a></button> -->
+    <button type="button" class='btn btn-outline'><a href="{% url 'estate_delete' pk=estate.pk%}">Remove</a></button>
     {% endifequal%}
-</body>
-</html>
+{% endblock %}

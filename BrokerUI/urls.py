@@ -5,8 +5,8 @@ from rest_framework import routers
 
 urlpatterns = [
     path('',views.EstateListView.as_view(),name='home'),
-    path('new_profile/',views.ProfileCreateView.as_view(),name='new_user'), # new profile viz broker, user, seller
-    path('new_user/',views.CreateUserView.as_view(),name='user_details'), # new user
+    path('new/profile/',views.ProfileCreateView.as_view(),name='new_profile'), # new profile viz broker, user, seller
+    path('new/user/',views.CreateUserView.as_view(),name='new_user'), # new user
     path('new_estate/',views.CreateEstateForm.as_view(),name='new_estate'), # new estate
     path('estate/<int:pk>',views.EstateDetailView.as_view(),name='estate_detail'),
     path('estate/update/<int:pk>',views.EstateUpdateView.as_view(),name='estate_update'),

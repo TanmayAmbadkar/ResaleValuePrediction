@@ -1,35 +1,89 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'BrokerUI/style.css' %}">
     <title>Document</title>
 </head>
 <body>
-    
 
-<div class="container">
-    {% if user.is_authenticated%}
-<h2>Welcome {{user.first_name}}</h2>
-{% endif%}
-<h2>List of the available estates</h2>
-<ol type="1">
-{% for e in estate_list%}
+<div class='middle-container bg'>
+    <!--  <div class='outerbody'> -->
+        <nav class="nav-bg height">
+            <div class='top-left'>
+                <a href="{% url 'home' %}" >
+                    <button class="btn btn-outline top-margin bigger-font" type="button">Home</button>
+                </a>
+                <a href="{% url 'home' %}" >
+                    <button class="btn btn-outline top-margin bigger-font" type="button">Search</button>
+                </a>
+                <a href="{% url 'predform' %}" >
+                    <button class="btn btn-outline top-margin bigger-font" type="button">Prediction</button>
+                </a>
+            </div>
+            <div class='top-right' style="float:right;">
+                {% if user.is_authenticated%}
+                    <h3 class="float-right font-color">Welcome {{user.first_name}}</h3>
+                    <h5 right-align> <a href="{% url 'logout' %}">Logout</a></h5>
+                {% else %}
+                    <button class="btn btn-outline bigger-font" type="button"><a href="{% url 'login' %}">Login</a></button>
+                    <button class="btn btn-outline bigger-font right-align" type="button"><a href="{% url 'new_user' %}">SignUp</a></button>
+                {% endif%}
+            </div>
 
-<li><a href="{% url 'estate_detail' pk=e.pk%}">Rs{{e.price}}  {{e.bedroom}}  {{e.carpetarea}}</a></li>
-</br>
-{% empty%}
-    <h4>No estate registered yet</h4>
-{% endfor %}
-</ol>
-{% if user.is_authenticated == False %}
-    <button><a href="{% url 'login' %}">Login</a></button>
-    <button><a href="{% url 'user_details' %}">SignUp</a></button>
-{% else %}
-    <button type='button'><a href="{% url 'new_estate' %}">New Estate</a></button>
-    <h3>Change user <a href="{% url 'logout' %}">Logout</a></h3>
-{% endif%}
-<button type='button'><a href="{% url 'predform' %}">Prediction</a></button>
+        </nav>
+    <!-- </div> -->
+    <div class='empty'></div>
+
+
+    {% block content%}
+
+        <div class='estate bg'>
+            <h4 class='font-color'>List of the available estates</h4></br>
+            <ol class='centre-align' type="1">
+            {% for e in estate_list%}
+
+            <li><a class='li-a' href="{% url 'estate_detail' pk=e.pk%}"><span class='price'>Rs{{e.price}}</span>  </a>
+            </br><span class='li-item'>{{e.bedroom}} beds    {{e.bathroom}} ba    {{e.carpetarea}} ft2</span>
+            </br><span class='li-comment'>{{e.comment}}</span>
+            </li>
+            </br>
+            {% empty%}
+                <h5 class='font-color'>No estate registered yet</h5>
+            {% endfor %}
+            </ol>
+
+
+
+            <div class="pagination centre-align">
+                <span class="step-links centre-align">
+                    {% if page_obj.has_previous %}
+                        <a class='btn btn-outline medium-font' href="?page=1">&laquo; first</a>
+                        <a class='btn btn-outline medium-font' href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="btn btn-page bigger-font">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a class='btn btn-outline medium-font' id='topalign' href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a class='btn btn-outline medium-font' href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+                {% if user.is_authenticated%}
+                <a href="{% url 'new_estate' %}">
+                <button type='button' class='btn btn-outline bigger-font '>Add new estate</button></a>
+            {% endif%}
+            </div>
+
+            </br>
+
+        </div>
+    {% endblock %}
+</div>
 
 </body>
 </html>

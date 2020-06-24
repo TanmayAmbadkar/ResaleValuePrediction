@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'BrokerUI/estate_list.html' %}
+
+{% block content%}
         {% ifequal estate.broker.user.username user.username %}
             {% if estate.broker.is_broker %}
                 <form method='POST'>
@@ -21,5 +17,4 @@
     <h2>Brokers with only their estates can update their objects</h2>
     <button type="button"><a href="{% url 'estate_detail' pk=estate.pk %}">Continue</a></button>
     {% endifequal %}
-</body>
-</html>
+{% endblock %}

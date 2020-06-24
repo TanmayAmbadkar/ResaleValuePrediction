@@ -38,7 +38,7 @@ class ProfileCreateView(LoginRequiredMixin,CreateView):
         form.instance.user = User.objects.filter(username=self.request.user.username)[0]
         username = self.request.user.username
         password = self.request.user.password
-        
+
         # t=form.save()
         try:
             return super().form_valid(form)
@@ -72,9 +72,8 @@ class CreateEstateForm(CreateView):
         print(p.user.first_name)
         print(form.instance.price)
         form.instance.broker = p
-        print(form.instance.broker.is_broker)
         print(form.instance.broker.user.username)
-        if(form.instance.broker.is_broker == False):
+        if(form.instance.broker.type != 'B'):
             messages.error(self.request,message='Only brokers can register')
             return super().form_invalid(form)
         try:

@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'BrokerUI/estate_list.html' %}
+
+{% block content%}
     <form class='post-form' method='POST'>
         {% csrf_token%}
         {{ form.as_p }}
@@ -13,7 +9,6 @@
     {% if form.errors %}
     {{form.errors}}
     {% endif %}
-    <button type='button'><a href="{% url 'new_user' %}"></a></button>
-    
-</body>
-</html>
+    <button type='button' class='btn btn-outline bigger-font'><a href="{% url 'new_profile' %}"></a></button>
+
+{% endblock %}
