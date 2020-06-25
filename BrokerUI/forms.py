@@ -20,7 +20,7 @@ class EstateForm(forms.ModelForm):
 
     class Meta:
         model = Estate
-        fields = ['lat','lon','bedroom','bathroom','carpetarea','builtuparea','price']
+        fields = ['lat','lon','bedroom','bathroom','carpetarea','builtuparea','price', 'project', 'furnished', 'construction_status', 'sublocality', 'type']
 
 class PredictionForm(forms.ModelForm):
     class Meta:

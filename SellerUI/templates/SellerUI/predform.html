@@ -1,0 +1,22 @@
+{% extends 'BrokerUI/estate_list.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+
+{% if user.is_authenticated %}
+<form method="POST">
+    {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit" class="btn btn-primary">Predict!</button>
+</form>
+{% for message in messages%}
+    <script >
+        alert("Your predicted price is : "+{{message}})
+    </script>
+{% endfor %}
+</br>
+{% else %}
+
+
+{% endif %}
+
+{% endblock %}

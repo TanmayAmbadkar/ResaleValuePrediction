@@ -9,24 +9,18 @@ from django.contrib.auth.decorators import login_required
 from SellerUI.forms import *
 from django.urls import reverse_lazy
 from django.contrib.auth import login, authenticate
+import joblib
+import pandas as pd
+import numpy as np
+from django.contrib import messages
 # Create your views here.
 
 # Create your views here.
 
 class HomeView(TemplateView):
-
-    #TemplateView is the most basic view. By default, it just loads a page set as its template_name
-    #We can add a context_dict using get_context_data to pass values to the page
     template_name = 'SellerUI/home.html'
 
 class CreateVehicleView(LoginRequiredMixin, CreateView):
-
-    #The createview helps create a new object for the model specified. LoginRequiredMixin is same is decorators
-    #the form class loads the form from which data is collected
-    #After form validation, we load the home page using reverse_lazy
-    # in the form validation, I am finding the Profile of the user who filled to form.
-    #This is required because I have to attach the vehicle to the Seller, and so I am attaching it to the form.instance which is vehicle_edit
-    # Vehicle.seller = profile
 
     template_name = 'SellerUI/vehicle_form.html'
     success_url = reverse_lazy('home')
@@ -38,8 +32,10 @@ class CreateVehicleView(LoginRequiredMixin, CreateView):
         profile = Profile.objects.get_or_create(user = self.request.user)[0]
         print(profile)
         form.instance.seller = profile
+        form.instance.publish()
         form.instance.save()
         return super().form_valid(form)
+
 
 class VehicleUpdateView(LoginRequiredMixin, UpdateView):
 
@@ -80,6 +76,48 @@ class DraftListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         profile = Profile.objects.filter(user = self.request.user)[0]
         return Vehicle.objects.filter(seller = profile)
+
+def VehiclePricePrediction(request):
+    if request.method=='POST':
+        form=VehiclePredForm(request.POST)
+        if form.is_valid():
+            mydict=(request.POST).dict()
+            df = pd.DataFrame(mydict,index=[0])
+            df['Year'] = int(df['Year'])
+            df['mileage'] = int(df['mileage'])
+            df.drop('csrfmiddlewaretoken', axis = 1, inplace = True)
+            dumm = pd.get_dummies(df)
+            if 'Make_audi' in dumm.columns:
+                dumm.drop('Make_audi', axis = 1, inplace = True)
+
+            if 'Model_3-series' in dumm.columns:
+                dumm.drop('Model_3-series', axis = 1, inplace = True)
+
+            if 'Type_cng' in dumm.columns:
+                dumm.drop('Type_cng', axis = 1, inplace = True)
+
+            true_labels = pd.read_csv('SellerUI/cars_final_labels.csv')
+            true_labels.fillna(0, inplace = True)
+            for i in dumm.columns:
+                true_labels[i] = dumm[i]
+            true_labels.to_csv('test.csv')
+            value = processing(true_labels)
+            value = value - value%1000
+            print("price: ", value);
+            messages.success(request,value)
+
+    form=VehiclePredForm()
+    return render(request,'SellerUI/predform.html',{'form':form})
+
+def processing(df):
+    regressor = joblib.load('SellerUI/MLModel.pkl')
+    scaler=joblib.load('SellerUI/scaler.pkl')
+    print(df.shape)
+    X = scaler.transform(df)
+    output = regressor.predict(df)
+    return int(output)
+
+
 '''
 class CreateUserView(CreateView):
 

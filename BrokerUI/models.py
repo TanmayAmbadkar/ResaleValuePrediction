@@ -21,7 +21,10 @@ class Profile(models.Model):
         return reverse('broker_detail', kwargs={'pk':self.pk})
 
 class Estate(models.Model):
-    broker = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    choices_furnished = [('yes','yes'),('no','no'),('semi','semi')]
+    choices_construction = [('under_construction','under_construction'),('launched','launched'),('ready_to_move','ready to move')]
+    type_choices=[('apartments','apartments'),('sale-floors','sale-floors'),('houses','houses')]
+    broker = models.ForeignKey(Profile,on_delete=models.CASCADE)
     lat = models.FloatField()
     lon = models.FloatField()
     price = models.FloatField()
@@ -29,6 +32,12 @@ class Estate(models.Model):
     bathroom = models.PositiveIntegerField()
     carpetarea = models.IntegerField()
     builtuparea = models.IntegerField()
+    project = models.CharField(max_length=400,default='can\'t say')
+    furnished= models.CharField(max_length=10,choices=choices_furnished,default='can\'t say')
+    construction_status = models.CharField(max_length=50,choices=choices_construction,default='can\'t say')
+    sublocality = models.CharField(max_length=100,default='can\'t say')
+    type=models.CharField(max_length=100,default='can\'t say', choices = type_choices)
+
     def __str__(self):
         return self.broker.user.first_name
 
@@ -113,5 +122,5 @@ class Prediction(models.Model):
     carpetarea = models.FloatField()
     project = models.CharField(max_length = 150, choices = project_choices)
 
-    def _str__(self):
+    def __str__(self):
         return f'{self.project} {self.rooms}'
