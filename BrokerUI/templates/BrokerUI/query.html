@@ -1,15 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'BrokerUI/estate_list.html' %}
+{% block content%}
+    <h4 style="color: blanchedalmond;">Filter estates</h4>
     <form method="GET">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Submit">
-    </form>
-    
-</body>
-</html>
+
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="broker_firstname_contains" placeholder="Broker firstname contains...">
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                             <i class="fa fa-search"></i>
+                        </div>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="broker_lastname_contains" placeholder="Broker lastname contains...">
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                             <i class="fa fa-search"></i>
+                        </div>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-12">
+                <div class="input-group">
+                    <input class="form-control py-2 border-right-0 border" type="search" name="project" placeholder="Project name contains...">
+                    <span class="input-group-append">
+                        <div class="input-group-text bg-transparent">
+                             <i class="fa fa-search"></i>
+                        </div>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-row">
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="inputEmail4"><span style="color: rgb(196, 218, 175);">min price</span></label>
+            <input type="number" class="form-control" name="min_price" id="inputEmail4" placeholder="0">
+          </div>
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">max price</span></label>
+            <input type="number" class="form-control" id="inputPassword4" name="max_price" placeholder="5000000 ">
+          </div>
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">min bedroom</span></label>
+            <input type="number" class="form-control" id="inputPassword4" name="min_bedroom" placeholder="0">
+          </div>
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">max bedroom</span></label>
+            <input type="number" class="form-control" id="inputPassword4" name="max_bedroom" placeholder="3">
+          </div>
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">min bathroom</span></label>
+            <input type="number" class="form-control" id="inputPassword4" name="min_bathroom" placeholder="0">
+          </div>
+          <div class="form-group col-md-2 col-lg-2">
+            <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">max bathroom</span></label>
+            <input type="number" class="form-control" id="inputPassword4" name="max_bathroom" placeholder="5">
+          </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-3 col-lg-3">
+              <label for="inputEmail4"><span style="color: rgb(196, 218, 175);">min carpetarea</span></label>
+              <input type="number" class="form-control" id="inputEmail4" name="min_carpetarea" placeholder="0">
+            </div>
+            <div class="form-group col-md-3 col-lg-3">
+              <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">max carpetarea</span></label>
+              <input type="number" class="form-control" id="inputPassword4" name="max_carpetarea" placeholder="5000000 ">
+            </div>
+            <div class="form-group col-md-3 col-lg-3">
+              <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">min floorarea</span></label>
+              <input type="number" class="form-control" id="inputPassword4" name="min_floorarea" placeholder="0">
+            </div>
+            <div class="form-group col-md-3 col-lg-3">
+              <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">max floorarea</span></label>
+              <input type="number" class="form-control" id="inputPassword4" name="max_floorarea" placeholder="3">
+            </div>
+        </div>
+
+
+
+
+        <!-- <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+              Check me out
+            </label> -->
+          <!-- </div>
+        </div> -->
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+
+    <hr><hr>
+    <div class="row">
+        <ul>
+    {% for estate in queryset %}
+        <li class="centre-align">
+            <span style="color: rgb(160, 188, 240); font-weight: bold; text-decoration: underline;">  Broker name</span> : <span style="color: rgb(223, 230, 236);">{{estate.broker.user.first_name}} {{broker.user.last_name}} ; </span>
+            <span style="color: rgb(160, 188, 240); font-weight: bold;margin-left: 10px; text-decoration: underline;">  Bedrooms</span> : <span style="color: aliceblue;">{{estate.bedroom}} ; </span>
+            <span style="color: rgb(160, 188, 240); font-weight: bold;margin-left: 10px; text-decoration: underline;">  Bathrooms</span> : <span style="color: aliceblue;">{{estate.bathroom}} ; </span>
+            <span style="color: rgb(160, 188, 240); font-weight: bold;margin-left: 10px; text-decoration: underline;">  Carpetarea</span> : <span style="color: aliceblue;">{{estate.carpetarea}} ft ; </span>
+            <span style="color: rgb(160, 188, 240); font-weight: bold;margin-left: 10px; text-decoration: underline;">  Builtuparea</span> : <span style="color: aliceblue;">{{estate.builtuparea}} ft ; </span>
+            <span style="color: rgb(160, 188, 240); font-weight: bold;margin-left: 10px; text-decoration: underline;">  Price</span> : <span style="color: aliceblue;">Rs {{estate.price}}</span>
+        </li><hr>
+    {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -14,4 +14,5 @@ urlpatterns = [
     path('broker/update/<int:pk>',views.BrokerUpdateView.as_view(),name='broker_update'),
     path('estate_delete/<int:pk>/remove',views.EstateDeleteView.as_view(),name='estate_delete'),
     path('form/', views.EstatePricePrediction, name='predform'),
+    path('search/',views.query,name='query'),
 ]

@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView
-from BrokerUI.forms import ProfileForm,UserForm,EsateForm,PredictionForm
+from BrokerUI.forms import ProfileForm,UserForm,EstateForm,PredictionForm
 from BrokerUI.models import Profile,Estate,Prediction
 from django.core import serializers
 from rest_framework import viewsets
@@ -147,3 +147,40 @@ def EstatePricePrediction(request):
 
     form=PredictionForm()
     return render(request,'BrokerUI/predform.html',{'form':form})
+
+def query(request):
+    qs = Estate.objects.all()
+    broker_firstname_query = request.GET.get('broker_firstname_contains')
+    broker_lastname_query = request.GET.get('broker_lastname_contains')
+    project_name_query = request.GET.get('project')
+    min_price_query,max_price_query,min_bedroom,max_bedroom,min_bathroom,max_bathroom,min_carpetarea,max_carpetarea,min_floorarea,max_floorarea = request.GET.get('min_price'),request.GET.get('max_price'),request.GET.get('min_bedroom'),request.GET.get('max_bedroom'),request.GET.get('min_bathroom'),request.GET.get('max_bathroom'),request.GET.get('min_carpetarea'),request.GET.get('max_carpetarea'),request.GET.get('min_floorarea'),request.GET.get('max_floorarea')
+    if broker_firstname_query !='' and broker_firstname_query is not None:
+        qs = qs.filter(broker__user__first_name__icontains=broker_firstname_query)
+    if broker_lastname_query !='' and broker_lastname_query is not None:
+        qs = qs.filter(broker__user__last_name__icontains=broker_lastname_query)
+    if min_price_query != '' and min_price_query is not None:
+        qs = qs.filter(price__gte = float(min_price_query))
+    if max_price_query != '' and max_price_query is not None:
+        qs = qs.filter(price__lte = float(max_price_query))
+    if min_bedroom != '' and min_bedroom is not None:
+        qs = qs.filter(bedroom__gte = float(min_bedroom))
+    if max_bedroom != '' and max_bedroom is not None:
+        qs = qs.filter(bedroom__lte = float(max_bedroom))
+    if min_bathroom != '' and min_bathroom is not None:
+        qs = qs.filter(bathroom__gte = float(min_bathroom))
+    if max_bathroom != '' and max_bathroom is not None:
+        qs = qs.filter(bathroom__lte = float(max_bathroom))
+    if min_carpetarea != '' and min_carpetarea is not None:
+        qs = qs.filter(carpetarea__gte=float(min_carpetarea))
+    if max_carpetarea != '' and max_carpetarea is not None:
+        qs = qs.filter(carpetarea__lte=float(max_carpetarea))
+    if min_floorarea != '' and min_floorarea is not None:
+        qs = qs.filter(builtuparea__gte=float(min_floorarea))
+    if max_floorarea != '' and max_floorarea is not None:
+        qs = qs.filter(builtuparea__lte=float(max_floorarea))
+
+
+    context={
+        'queryset':qs
+    }
+    return render(request,'BrokerUI/query.html',context)
