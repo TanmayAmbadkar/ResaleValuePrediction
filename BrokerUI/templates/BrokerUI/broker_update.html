@@ -1,11 +1,12 @@
-{% extends 'BrokerUI/estate_list.html' %}
+{% extends 'SellerUI/base.html' %}
+{% load crispy_forms_tags %}
 
-{% block content%}
+{% block bodyblock%}
     {% ifequal profile.user.username user.username %}
-        <form method="POST">
+        <form method='POST' class = "text-center border border-light p-5 mb-6">
             {% csrf_token %}
-            {{form.as_p}}
-            <input type="submit" value="submit">
+            {{form|crispy}}
+            <input type="submit" class='btn btn-primary' value='Update!'>
         </form>
     {% else %}
     <h2>You can only update your estate objects.</h2>

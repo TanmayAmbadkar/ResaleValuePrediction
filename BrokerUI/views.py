@@ -22,7 +22,7 @@ class ProfileListView(ListView):
 class ProfileCreateView(LoginRequiredMixin,CreateView):
     form_class=ProfileForm
     login_url = '/login/'
-    redirect_field_name = 'BrokerUI/profile_form.html'
+    redirect_field_name = 'SellerUI/home.html'
 
     model = Profile
     success_url = reverse_lazy('home')
@@ -90,8 +90,8 @@ class EstateDetailView(LoginRequiredMixin,DetailView):
 
 class EstateUpdateView(UpdateView):
     model = Estate
-    fields=['price','bedroom','bathroom']
     template_name = 'BrokerUI/estate_update_form.html'
+    form_class = EstateForm
 
 
 class BrokerDetailView(DetailView):

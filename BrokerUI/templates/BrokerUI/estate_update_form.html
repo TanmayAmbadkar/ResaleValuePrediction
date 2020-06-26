@@ -1,16 +1,14 @@
-{% extends 'BrokerUI/estate_list.html' %}
+{% extends 'SellerUI/base.html' %}
+{% load crispy_forms_tags %}
 
-{% block content%}
-        {% ifequal estate.broker.user.username user.username %}
-            {% if estate.broker.is_broker %}
-                <form method='POST'>
-                    
-                    {% csrf_token %}
-                    {{form.as_p}}
-                    <input type='submit' value="save">
-                </form>
-            {% endif %}
-            <h3>Only brokers can update the perform updation</h3>
+{% block bodyblock%}
+    {% ifequal estate.broker.user.username user.username %}
+            <form method='POST' class = "text-center border border-light p-5 mb-6">
+
+                {% csrf_token %}
+                {{form|crispy}}
+                <input type="submit" class='btn btn-success' value='Saves'>
+            </form>
 
     {% else %}
     <h2>Sorry, you are not authorized to continue your query</h2>

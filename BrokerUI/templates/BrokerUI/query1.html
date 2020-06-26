@@ -1,8 +1,6 @@
-{% extends 'SellerUI/base.html' %}
-{% block bodyblock %}
-<br>
-<div class="container">
-    <h4>Filter estates</h4>
+{% extends 'BrokerUI/estate_list.html' %}
+{% block content%}
+    <h4 style="color: blanchedalmond;">Filter estates</h4>
     <form method="GET">
 
         <div class="form-row">
@@ -51,46 +49,46 @@
 
         <div class="form-row">
           <div class="form-group col-md-2 col-lg-2">
-            <label for="inputEmail4"><span >min price</span></label>
+            <label for="inputEmail4"><span style="color: rgb(196, 218, 175);">min price</span></label>
             <input type="number" class="form-control" name="min_price" id="inputEmail4" placeholder="0">
           </div>
           <div class="form-group col-md-2 col-lg-2">
-            <label for="inputPassword4"><span >max price</span></label>
+            <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">max price</span></label>
             <input type="number" class="form-control" id="inputPassword4" name="max_price" placeholder="5000000 ">
           </div>
           <div class="form-group col-md-2 col-lg-2">
-            <label for="inputPassword4"><span >min bedroom</span></label>
+            <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">min bedroom</span></label>
             <input type="number" class="form-control" id="inputPassword4" name="min_bedroom" placeholder="0">
           </div>
           <div class="form-group col-md-2 col-lg-2">
-            <label for="inputPassword4"><span >max bedroom</span></label>
+            <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">max bedroom</span></label>
             <input type="number" class="form-control" id="inputPassword4" name="max_bedroom" placeholder="3">
           </div>
           <div class="form-group col-md-2 col-lg-2">
-            <label for="inputPassword4"><span >min bathroom</span></label>
+            <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">min bathroom</span></label>
             <input type="number" class="form-control" id="inputPassword4" name="min_bathroom" placeholder="0">
           </div>
           <div class="form-group col-md-2 col-lg-2">
-            <label for="inputPassword4"><span >max bathroom</span></label>
+            <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">max bathroom</span></label>
             <input type="number" class="form-control" id="inputPassword4" name="max_bathroom" placeholder="5">
           </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-3 col-lg-3">
-              <label for="inputEmail4"><span >min carpetarea</span></label>
+              <label for="inputEmail4"><span style="color: rgb(196, 218, 175);">min carpetarea</span></label>
               <input type="number" class="form-control" id="inputEmail4" name="min_carpetarea" placeholder="0">
             </div>
             <div class="form-group col-md-3 col-lg-3">
-              <label for="inputPassword4"><span >max carpetarea</span></label>
+              <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">max carpetarea</span></label>
               <input type="number" class="form-control" id="inputPassword4" name="max_carpetarea" placeholder="5000000 ">
             </div>
             <div class="form-group col-md-3 col-lg-3">
-              <label for="inputPassword4"><span >min floorarea</span></label>
+              <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">min floorarea</span></label>
               <input type="number" class="form-control" id="inputPassword4" name="min_floorarea" placeholder="0">
             </div>
             <div class="form-group col-md-3 col-lg-3">
-              <label for="inputPassword4"><span >max floorarea</span></label>
+              <label for="inputPassword4"><span style="color: rgb(196, 218, 175);">max floorarea</span></label>
               <input type="number" class="form-control" id="inputPassword4" name="max_floorarea" placeholder="3">
             </div>
         </div>
@@ -133,7 +131,4 @@
     {% endfor %}
         </ul>
     </div>
-
-</div>
-
 {% endblock %}

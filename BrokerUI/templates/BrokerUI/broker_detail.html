@@ -1,11 +1,10 @@
-{% extends 'BrokerUI/estate_list.html' %}
-
+{% extends 'SellerUI/base.html' %}
+{% load static %}
 {% block content%}
     {% ifequal profile.user.username user.username %}
             {% if profile.is_broker %}
                 <h3>First name : {{profile.user.first_name}}</h3>
                 <h3>Last name : {{profile.user.last_name}}</h3>
-                <h3>Username : {{profile.user.username}}</h3>
                 <h3>Email : {{profile.user.email}}</h3>
                 <h3>phone number : {{profile.phone_number}}</h3>
                 <h3>type : {{profile.type}}</h3>
@@ -13,6 +12,33 @@
             <button type="button"><a href="{% url 'broker_update' pk=profile.pk %}">Update</a></button>
             <button type="button"><a href="{% url 'home' %}">Home</a></button>
 
+    {% else %}
+    <h2>Sorry, you are not authorized to continue your query</h2>
+    <h2>Brokers with only their estates can update their objects</h2>
+    <button type="button"><a href="{% url 'home' %}">Continue</a></button>
+    {% endifequal %}
+{% endblock %}
+
+{% block bodyblock %}
+    {% ifequal profile.user.username user.username %}
+    <div class="jumbotron" style = "background : white">
+        <div class="card testimonial-card mb-4" id = 'about' style="margin-left:30%; margin-right:30%">
+          <br/>
+            <div class="avatar mx-auto white" >
+                <img src="{% static "media/blank-user.jpg" %}" class="rounded-circle"
+                alt="user" width="100" height="100">
+            </div>
+            <br/>
+            <div class="card-body">
+                <h5 style="text-align:center;">{{profile.user.first_name}} {{profile.user.last_name}}</h5>
+                <p>Email: {{profile.user.email}}</p>
+                <p>phone number : {{profile.phone_number}}</p>
+                <p>type : {{profile.type}}</p>
+                <hr>
+            </div>
+        </div>
+        <button type="button"><a href="{% url 'broker_update' pk=profile.pk %}">Update</a></button>
+    </div>
     {% else %}
     <h2>Sorry, you are not authorized to continue your query</h2>
     <h2>Brokers with only their estates can update their objects</h2>
