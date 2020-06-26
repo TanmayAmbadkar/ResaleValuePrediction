@@ -3,12 +3,13 @@
 
 {% block bodyblock %}
 
-        </br>
-        </br>
-        </br>
-        <h1 style = 'text-align:center;'>List of Estates</h1>
-        </br>
-        <div class="list-group" style="margin-left:30%; margin-right:30%;">
+    </br>
+    </br>
+    </br>
+    <h1 style = 'text-align:center;'>List of Estates</h1>
+    </br>
+    <div class="container">
+        <div class="list-group" style = "align-text:center;">
         {% for e in estate_list%}
           <a href="{% url 'estate_detail' pk=e.pk%}" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
@@ -51,4 +52,6 @@
         </br>
 
     </div>
+    </div>
+
 {% endblock %}

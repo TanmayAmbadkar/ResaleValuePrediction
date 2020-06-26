@@ -23,6 +23,7 @@ class ProfileCreateView(LoginRequiredMixin,CreateView):
     form_class=ProfileForm
     login_url = '/login/'
     redirect_field_name = 'BrokerUI/profile_form.html'
+
     model = Profile
     success_url = reverse_lazy('home')
 
@@ -34,6 +35,7 @@ class ProfileCreateView(LoginRequiredMixin,CreateView):
         form.instance.user = User.objects.filter(username=self.request.user.username)[0]
         username = self.request.user.username
         password = self.request.user.password
+        print(username,password)
         form.instance.save()
         # t=form.save()
         try:

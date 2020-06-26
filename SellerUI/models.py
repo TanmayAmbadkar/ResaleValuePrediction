@@ -39,6 +39,7 @@ class Vehicle(models.Model):
     created_date = models.DateTimeField(default = timezone.now)
     published_date = models.DateTimeField(blank = True, null = True)
     photo = models.ImageField(upload_to = 'vehicle_image', blank = True)
+    bought = models.BooleanField(default=False)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -46,6 +47,9 @@ class Vehicle(models.Model):
 
     def __str__(self):
         return f"{self.Vmodel} {self.make}"
+
+    def buy(self):
+        self.bought = True
 
 class VehiclePredPrice(models.Model):
 

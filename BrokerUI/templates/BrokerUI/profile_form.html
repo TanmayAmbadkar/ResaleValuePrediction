@@ -7,7 +7,7 @@
     {% if form.errors %}
         <p>Your username and password did not match</p>
     {% endif %}
-    <form action="{% url 'login' %}" method='POST' class = "text-center border border-light p-5 mb-6"  enctype="multipart/form-data">
+    <form method='POST' class = "text-center border border-light p-5 mb-6"  enctype="multipart/form-data">
         <h2> Welcome {{user.firstname}}</h2>
         <h1>Please add your details</h1>
         {% csrf_token %}

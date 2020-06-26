@@ -10,7 +10,7 @@
 
     <ul class="list-group list-group-flush" >
       <img src="/media/{{vehicle.photo}}" alt="abc" class="img-fluid">
-      <li class="list-group-item">Seller Name : <a href="#">{{vehicle.seller.user.first_name}} {{vehicle.seller.user.last_name}}</a></li>
+      <li class="list-group-item">Seller Name : {{vehicle.seller.user.first_name}} {{vehicle.seller.user.last_name}}</li>
       <li class="list-group-item">Seller phone_number : {{estate.broker.phone_number}}</li>
       <li class="list-group-item">Make : {{vehicle.make}}</li>
       <li class="list-group-item">Mileage : {{vehicle.mileage}}</</li>
@@ -21,6 +21,12 @@
       <li class="list-group-item">Description: {{vehicle.desc|safe|linebreaksbr}}</li>
 
     </ul>
+
+    {% if not vehicle.bought and profile.type == 'C'%}
+        <form method="get">
+            <input type="submit" name="status" value="Buy!" class = 'btn btn-success'>
+        </form>
+    {% endif %}
 </div>
 
 

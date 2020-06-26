@@ -1,5 +1,6 @@
-{% extends 'SellerUI/base.html' %}
+{% extends "SellerUI/base.html" %}
 {% load static %}
+
 
 {% block bodyblock %}
 
@@ -9,20 +10,17 @@
     </br>
     <div class="container">
         <div class="list-group">
-        {% for vehicle in vehicle_list%}
-        {% if not vehicle.bought%}
-          <a href="{% url 'vehicle_detail' pk=vehicle.pk%}" class="list-group-item list-group-item-action flex-column align-items-start">
+        {% for v in vehicles%}
+          <a href="{% url 'vehicle_detail' pk=v.vehicle.pk%}" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-2 h5">{{vehicle.make}} {{vehicle.Vmodel}}</h5>
-              <small>{{vehicle.published_date}}</small>
+              <h5 class="mb-2 h5">{{v.vehicle.make}} {{v.vehicle.Vmodel}}</h5>
+              <small>{{v.vehicle.published_date}}</small>
             </div>
-            <p class="mb-2">Rs{{vehicle.price}}</p>
-            <small>{{vehicle.description}}</small>
+            <p class="mb-2">Rs{{v.vehicle.price}}</p>
+            <small>{{v.vehicle.description}}</small>
           </a>
-
-        {% endif %}
           {% empty%}
-              <h5 class='font-color'>No vehicles registered yet</h5>
+              <h5 class='font-color'>No vehicles Bought yet</h5>
 
           {% endfor %}
 

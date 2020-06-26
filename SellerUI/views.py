@@ -13,6 +13,7 @@ import joblib
 import pandas as pd
 import numpy as np
 from django.contrib import messages
+from UserUI.models import *
 # Create your views here.
 
 # Create your views here.
@@ -82,6 +83,27 @@ class DraftListView(LoginRequiredMixin, ListView):
         profile = Profile.objects.filter(user = self.request.user)[0]
         return Vehicle.objects.filter(seller = profile)
 
+def BuyVehicle(request):
+
+    vehicle = Vehicle(pk=request.vehicle.pk)
+    vehicle.buy()
+    vehicle.save()
+    print("success")
+    bought = VehiclesBought(buyer = request.user, vehicle = vehicle)
+    bought.save()
+
+
+    return render(request,'SellerUI/vehicle_list.html')
+
+
+class VehicleDetailView(DetailView):
+
+    #Simply sends a single object pk = <int:pk> to the page.
+    #the context dict is a single object, which could be changed using get_context_data
+
+    model = Vehicle
+
+
 def VehiclePricePrediction(request):
     if request.method=='POST':
         form=VehiclePredForm(request.POST)
@@ -121,6 +143,29 @@ def processing(df):
     X = scaler.transform(df)
     output = regressor.predict(df)
     return int(output)
+
+
+def VehicleDetailView(request, pk):
+
+    profile = Profile.objects.get(user = request.user)
+    vehicle = Vehicle.objects.get(pk = pk)
+    context = {
+        'vehicle':vehicle,
+        'profile':profile,
+    }
+
+    status = request.GET.get('status')
+
+    if status == 'Buy!':
+        vehicle.buy()
+        vehicle.save()
+        print("Success")
+        bought = VehiclesBought(vehicle = vehicle, buyer = profile)
+        bought.save()
+        print("Success")
+
+
+    return render(request,'SellerUI/vehicle_detail.html',context)
 
 
 '''

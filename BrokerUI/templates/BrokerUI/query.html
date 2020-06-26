@@ -119,21 +119,22 @@
       </form>
 
     <hr><hr>
-    <div class="row">
-        <ul>
-    {% for estate in queryset %}
-        <li class="centre-align">
-            <span style="color: rgb(160, 188, 240); font-weight: bold; text-decoration: underline;">  Broker name</span> : <span style="color: rgb(223, 230, 236);">{{estate.broker.user.first_name}} {{broker.user.last_name}} ; </span>
-            <span style="color: rgb(160, 188, 240); font-weight: bold;margin-left: 10px; text-decoration: underline;">  Bedrooms</span> : <span style="color: aliceblue;">{{estate.bedroom}} ; </span>
-            <span style="color: rgb(160, 188, 240); font-weight: bold;margin-left: 10px; text-decoration: underline;">  Bathrooms</span> : <span style="color: aliceblue;">{{estate.bathroom}} ; </span>
-            <span style="color: rgb(160, 188, 240); font-weight: bold;margin-left: 10px; text-decoration: underline;">  Carpetarea</span> : <span style="color: aliceblue;">{{estate.carpetarea}} ft ; </span>
-            <span style="color: rgb(160, 188, 240); font-weight: bold;margin-left: 10px; text-decoration: underline;">  Builtuparea</span> : <span style="color: aliceblue;">{{estate.builtuparea}} ft ; </span>
-            <span style="color: rgb(160, 188, 240); font-weight: bold;margin-left: 10px; text-decoration: underline;">  Price</span> : <span style="color: aliceblue;">Rs {{estate.price}}</span>
-        </li><hr>
-    {% endfor %}
-        </ul>
-    </div>
+    {% for e in queryset%}
+      <a href="{% url 'estate_detail' pk=e.pk%}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-2 h5">Rs{{e.price}}</h5>
+        </div>
+        <p class="mb-2">Locality : {{e.sublocality}}</p>
+        <small>{{e.bedroom}} beds </small>
+        <small>{{e.bathroom}} bathrooms </small>
+        <small>{{e.carpetarea}} ft2</small>
+
+      </a>
+      {% empty%}
+          <h5 class='font-color'>No vehicles!</h5>
+      {% endfor %}
 
 </div>
+<br>
 
 {% endblock %}
