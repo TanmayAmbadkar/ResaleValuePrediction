@@ -2,10 +2,6 @@ from django.shortcuts import render
 from django.views.generic import TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView
 from BrokerUI.forms import ProfileForm,UserForm,EstateForm,PredictionForm
 from BrokerUI.models import Profile,Estate,Prediction
-from django.core import serializers
-from rest_framework import viewsets
-from django.core import serializers
-from rest_framework.response import Response
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
@@ -17,6 +13,7 @@ from BrokerUI.serializers import PredictionSerializers
 import joblib
 import pandas as pd
 import numpy as np
+from django.contrib import messages
 
 
 class ProfileListView(ListView):
@@ -83,6 +80,7 @@ class CreateEstateForm(CreateView):
 
 class EstateListView(ListView):
     model = Estate
+    paginate_by=5
 
 class EstateDetailView(LoginRequiredMixin,DetailView):
     login_url = '/login/'

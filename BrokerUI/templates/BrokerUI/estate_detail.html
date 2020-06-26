@@ -1,23 +1,34 @@
-{% extends 'BrokerUI/estate_list.html' %}
+{% extends 'SellerUI/base.html' %}
 
 {% block content%}
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">Broker Name :</span> <a href="{% url 'broker_detail' pk=estate.broker.pk %}">{{estate.broker.user.first_name}} {{estate.broker.user.last_name}}</a></h3>
-    <!-- <h3><span style="color: #d1d7e0; font-weight: bolder;">Broker type : </span>{{estate.broker.type}}</h3> -->
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">Broker phone_number : </span><span  style="color: #e4e96b;">{{estate.broker.phone_number}}</span></h3>
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">price : </span><span  style="color: #e4e96b;">{{estate.price}}</span></h3>
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">Type of Building : </span><span  style="color: #e4e96b;">{{estate.type}}</span></h3>
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">Bedroom : </span><span  style="color: #e4e96b;">{{estate.bedroom}}</span></h3>
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">Bathroom : </span><span  style="color: #e4e96b;">{{estate.bathroom}} </span></h3>
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">Carpet Area : </span><span  style="color: #e4e96b;">{{estate.carpetarea}} ft</span></h3>
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">Builtup Area : </span><span  style="color: #e4e96b;">{{estate.builtuparea}} ft</span></h3>
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">Project: </span><span  style="color: #e4e96b;">{{estate.project}}</span></h3>
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">Status of furnishing : </span><span  style="color: #e4e96b;">{{estate.furnished}}</span></h3>
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">Status of Construction : </span><span  style="color: #e4e96b;">{{estate.construction_status}}</span></h3
-    <h3><span style="color: #d1d7e0; font-weight: bolder;">Locality : </span><span  style="color: #e4e96b;">{{estate.sublocality}}</span></h3>
-</br>
-    {% ifequal estate.broker.user.username user.username %}
-    <button class='btn btn-outline'><a href="{% url 'estate_update' pk=estate.pk %}">Update</a></button>
-    <!-- <button type="button" class='btn btn-detail'><a href="{% url 'new_user' %}">Create Profile</a></button> -->
-    <button type="button" class='btn btn-outline'><a href="{% url 'estate_delete' pk=estate.pk%}">Remove</a></button>
-    {% endifequal%}
+
+{% endblock %}
+
+{% block bodyblock %}
+<br>
+<br>
+<h1 style = 'text-align:center;'>Details of Property</h1>
+<ul class="list-group list-group-flush" style="margin-left:30%; margin-right:30%;">
+  <li class="list-group-item">Broker Name : <a href="{% url 'broker_detail' pk=estate.broker.pk %}">{{estate.broker.user.first_name}} {{estate.broker.user.last_name}}</a></li>
+  <li class="list-group-item">Broker phone_number : {{estate.broker.phone_number}}</li>
+  <li class="list-group-item">Price : {{estate.price}}</li>
+  <li class="list-group-item">Type of Building : {{estate.type}}</</li>
+  <li class="list-group-item">Bedroom : {{estate.bedroom}}</li>
+  <li class="list-group-item">Bathroom : {{estate.bathroom}}</li>
+  <li class="list-group-item">Carpet Area : {{estate.carpetarea}} </li>
+  <li class="list-group-item">Builtup Area : {{estate.builtuparea}} </li>
+  <li class="list-group-item">Project: {{estate.project}}</li>
+  <li class="list-group-item">Status of furnishing : {{estate.furnished}}</li>
+  <li class="list-group-item">Status of Construction : {{estate.construction_status}}</li>
+  <li class="list-group-item">Locality : {{estate.sublocality}}</li>
+</ul>
+
+
+{% ifequal estate.broker.user.username user.username %}
+<button class='btn btn-outline'><a href="{% url 'estate_update' pk=estate.pk %}">Update</a></button>
+<!-- <button type="button" class='btn btn-detail'><a href="{% url 'new_user' %}">Create Profile</a></button> -->
+<button type="button" class='btn btn-outline'><a href="{% url 'estate_delete' pk=estate.pk%}">Remove</a></button>
+{% endifequal%}
+
+
 {% endblock %}

@@ -1,45 +1,52 @@
-{% extends "SellerUI/base.html" %}
+{% extends 'SellerUI/base.html' %}
 {% load static %}
 
-{% block content %}
+{% block bodyblock %}
 
-<section class="site-section pt-5">
-  <div class="container">
-    <div class="row blog-entries">
-      <div class="col-md-12 col-lg-8 main-content">
-        <div class="row mb-5 mt-5">
+        </br>
+        </br>
+        </br>
+        <h1 style = 'text-align:center;'>List of Vehicles</h1>
+        </br>
+        <div class="list-group" style="margin-left:30%; margin-right:30%;">
+        {% for vehicle in vehicle_list%}
+          <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-2 h5">{{vehicle.make}} {{vehicle.Vmodel}}</h5>
+              <small>{{vehicle.published_date}}</small>
+            </div>
+            <p class="mb-2">Rs{{vehicle.price}}</p>
+            <small>{{vehicle.description}}</small>
+          </a>
+          {% empty%}
+              <h5 class='font-color'>No vehicles registered yet</h5>
+          {% endfor %}
 
-           <div class="col-md-12">
 
-             {% for vehicle in object_list %}
-             {% if vehicle.published_date %}
-             <div class="post-entry-horzontal">
-               <a href="{% url 'vehicle_detail' pk=vehicle.pk %}">
-               <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url({% static 'images/car.jpg' %});"></div>
-                 <span class="text">
-                     <div class="post-meta">
-                       <span class="author mr-2">Seller: {{vehicle.seller.user.first_name}} {{vehicle.seller.user.last_name}}</span>
-                       </br>
-                       <span class="mr-2">Published: {{vehicle.created_date}}</span>
 
-                     </div>
-                     <h2>Make: {{vehicle.make}}</h2>
-                     <h2>Model: {{ vehicle.Vmodel }}</h2>
-                     <h2>Price: Rs. {{ vehicle.price }}</h2>
-                  </span>
-                </a>
-	          </div>
-`             {% endif %}`
+        <div class="pagination centre-align">
+            <span class="step-links centre-align">
+                {% if page_obj.has_previous %}
+                    <a class='btn btn-outline medium-font' href="?page=1">&laquo; first</a>
+                    <a class='btn btn-outline medium-font' href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
 
-             {% empty %}
-             <h2>No Vehicles!</h2>
-             {% endfor %}
-	      </div>
+                <span class="btn btn-page bigger-font">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a class='btn btn-outline medium-font' id='topalign' href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a class='btn btn-outline medium-font' href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+            {% if user.is_authenticated%}
+            <a href="{% url 'new_estate' %}">
+            <button type='button' class='btn btn-outline bigger-font '>Add new estate</button></a>
+        {% endif%}
         </div>
-      </div>
+
+        </br>
+
     </div>
-  </div>
-</section>
-
-
 {% endblock %}

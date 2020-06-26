@@ -1,0 +1,41 @@
+body{
+    background-color:#e9ecef;
+    overflow-y: scroll; /* Hide vertical scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
+.carousel-inner{
+    overflow: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+#about{
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.envelope {
+    background: url('media/envelope-regular.svg');
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}

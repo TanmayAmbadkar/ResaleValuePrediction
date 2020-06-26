@@ -1,0 +1,53 @@
+{% extends "SellerUI/base.html" %}
+{% load static %}
+
+{% block bodyblock %}
+
+<div class="jumbotron" style = "background : white">
+    <div class='card-deck'>
+        <div class="card testimonial-card mb-4" id = 'about'>
+
+          <!-- Background color -->
+          <br/>
+          <!-- Avatar -->
+            <div class="avatar mx-auto white" >
+                <img src="{% static "media/animesh.jpg" %}" class="rounded-circle"
+                alt="Animesh" width="100" height="100">
+            </div>
+            <br/>
+
+          <!-- Content -->
+            <div class="card-body">
+            <!-- Name -->
+                <h5 style="text-align:center;">201851153 Animesh Gupta</h5>
+                <hr>
+
+            </div>
+
+        </div>
+
+        <div class="card testimonial-card mb-4" id = 'about'>
+
+            <br/>
+          <!-- Avatar -->
+            <div class="avatar mx-auto white">
+                <img src="{% static "media/tanmay.jpg" %}" class="rounded-circle"
+                alt="tanmay" idth="100" height="100">
+            </div>
+
+            <br/>
+
+          <!-- Content -->
+            <div class="card-body">
+
+                <h5 style="text-align:center;">201851018 Tanmay Ambadkar</h5>
+                <hr>
+
+
+            </div>
+
+        </div>
+</div>
+</div>
+
+{% endblock %}

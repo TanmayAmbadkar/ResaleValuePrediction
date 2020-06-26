@@ -1,22 +1,54 @@
-{% extends 'BrokerUI/estate_list.html' %}
+{% extends 'SellerUI/base.html' %}
 {% load crispy_forms_tags %}
-{% block content%}
+{% block bodyblock%}
+    <form method="POST" class = "text-center border border-light p-5 mb-6">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit" class="btn btn-primary">Predict!</button>
+    </form>
+    {% for message in messages%}
+        <script type="text/javascript">
+        $(document).ready(function(){
+            $("#centralModalSuccess").modal('show');
+        });
+        </script>
+        <div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-notify modal-success" role="document">
+            <!--Content-->
+            <div class="modal-content">
+              <!--Header-->
+              <div class="modal-header">
+                <p class="heading lead">Prediction Success</p>
 
-{% if user.is_authenticated %}
-<form method="POST">
-    {% csrf_token %}
-    {{form|crispy}}
-    <button type="submit" class="btn btn-primary">Predict!</button>
-</form>
-{% for message in messages%}
-    <script >
-        alert("Your predicted price is : "+{{message}})
-    </script>
-{% endfor %}
-</br>
-{% else %}
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+              </div>
 
+              <!--Body-->
+              <div class="modal-body">
+                <div class="text-center">
+                  <i class="fas fa-check fa-4x mb-3 animated rotateIn"></i>
+                  <p>The predicted price is {{message}}</p>
+                </div>
+              </div>
 
-{% endif %}
+              <!--Footer-->
+              <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-outline-success waves-effect" data-dismiss="modal">Continue</a>
+              </div>
+            </div>
+            <!--/.Content-->
+          </div>
+        </div>
+    {% endfor %}
+    </br>
 
 {% endblock %}
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->

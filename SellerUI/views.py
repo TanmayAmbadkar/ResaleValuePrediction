@@ -20,6 +20,9 @@ from django.contrib import messages
 class HomeView(TemplateView):
     template_name = 'SellerUI/home.html'
 
+class ContributorView(TemplateView):
+    template_name = 'SellerUI/aboutus.html'
+
 class CreateVehicleView(LoginRequiredMixin, CreateView):
 
     template_name = 'SellerUI/vehicle_form.html'
@@ -60,6 +63,7 @@ class VehicleListView(ListView):
     #the context dict is aall objects, which could be changed using get_context_data
 
     model = Vehicle
+    paginate_by=10
 
 
 class DraftListView(LoginRequiredMixin, ListView):

@@ -1,14 +1,16 @@
-{% extends 'BrokerUI/estate_list.html' %}
+{% extends 'SellerUI/base.html' %}
+{% load crispy_forms_tags %}
 
-{% block content%}
-    <h2> Welcome {{user.first_name}}</h2>
-    <h1>New Estate</h1>
+
+{% block bodyblock%}
+
     {% if user.is_authenticated%}
-        <form class='post-form' method='POST'>
-            {% csrf_token%}
-            {{ form.as_p }}
-            <button class='save btn btn-primary'>Save</button>
-        </form>
+    <form method='POST' class = "text-center border border-light p-5 mb-6">
+        <h3>Register new estate</h3>
+        {% csrf_token%}
+        {{ form|crispy }}
+        <input type="submit" class='btn btn-primary' value='Register'>
+    </form>
         {% if form.errors %}
         {{form.errors}}
         {% endif %}
@@ -16,9 +18,7 @@
             {% for message in messages %}
                 {{message}}
             {% endfor %}
-            <a href="{% url 'home' %}">Return to home</a>
         {% endif %}
-        <h3>Change user <a href="{% url 'logout' %}">Logout</a></h3>
     {% else %}
         you are not authenticated
         <button type='button'><a href="{% url 'login' %}">Login</a></button>

@@ -1,156 +1,158 @@
 {% load static %}
+
 <!DOCTYPE html>
-
-<html lang="en" dir="ltr">
+<html lang="en">
     <head>
-
-  	<meta charset="utf-8">
-        <title>DBMS Project</title>
-
-        <!-- Wordify -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
+        <meta name="description" content="A Group company started as a manufacturer of medical disposable products in the late eighties. DAA Business Associates was formed in 1993 and has many successful projects under its belt." />
+        <meta name="author" content="" />
+        <title>Home</title>
+        <!-- Font Awesome icons (free version)-->
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
-
-
-        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300, 400,700|Inconsolata:400,700" rel="stylesheet">
-
-        <link rel="stylesheet" href="{% static 'css/animate.css' %}"-->
-        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-
-        <link rel="stylesheet" href="{% static 'fonts/fontawesome/css/font-awesome.min.css' %}">
-
-        <!-- Theme Style -->
-        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+        <!-- Google Fonts Roboto -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <!-- Material Design Bootstrap -->
+        <link rel="stylesheet" href="{% static 'css/mdb.min.css' %}">
+        <!-- Your custom styles (optional) -->
+        <link rel="stylesheet" href="{% static 'css/master.css' %} ">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     </head>
-    <body>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg  navbar-dark primary-color">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- Navbar -->
-        <div class="wrap">
-
-            <header role="banner">
-            <div class="top-bar">
-              <div class="container">
-                <div class="row">
-                  <div class="col-2 social">
-                     <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu" role="button" aria-expanded="false" aria-controls="navbarMenu"><span class="fa fa-navicon"></span></a>
-
-
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="container logo-wrap">
-              <div class="row pt-5">
-                <div class="col-12 text-center">
-                  <h1 class="site-logo"><a href="{% url 'home' %}" rel="noreferrer">Resale Management</a></h1>
-                </div>
-              </div>
-            </div>
-
-            <nav class="navbar navbar-expand-md navbar-dark">
-              <div class="container">
-
-                <div class="collapse navbar-collapse" id="navbarMenu">
-                  <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                      <a class="nav-link" href="{% url 'home' %}" rel="noreferrer">Home</a>
+            <div class="collapse navbar-collapse fixed top" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item" >
+                        <a class="nav-link" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="{% url 'vehicle_list' %}" rel="noreferrer">Vehicles</a>
+                        <a class="nav-link" href="{% url 'about' %}">About Us <span class="sr-only">(current)</span></a>
                     </li>
-
-                    <li class="nav-item">
-                      <a class="nav-link" href="#" rel="noreferrer">Real Estate</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">Real Estates</a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'estates' %}">List of Estates</a>
+                            <a class="dropdown-item" href="{% url 'query' %}">Search</a>
+                            <a class="dropdown-item" href="{% url 'predform' %}">Prediction!</a>
+                        </div>
                     </li>
-                    {% if user.is_authenticated %}
-
-                    <li class="nav-item">
-                      <a class="nav-link disabled" href="#">Welcome {{user.first_name}} {{user.last_name}}</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                          aria-haspopup="true" aria-expanded="false">Vehicles</a>
+                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="{% url 'vehicle_list' %}">List of Vehicles</a>
+                            <a class="dropdown-item" href="{% url 'vehpredform' %}">Prediction!</a>
+                        </div>
                     </li>
-                    <li>
-                        <a href="{% url 'vehicle_new' %}" class = 'nav-link'>New</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'vehicle_draft_list' %}" class = 'nav-link'>Drafts</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'logout' %}" class = 'nav-link'>Logout</a>
-                    </li>
-                    {% else %}
+                </ul>
+                <div class="contact">
+                    <ul class="navbar-nav mr-auto my-2 my-lg-0">
+                        {% if user.is_authenticated%}
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#"> Welcome {{user.first_name}} <span class="sr-only">(current)</span></a>
                         </li>
-                            <a href="{% url 'login' %}" class = 'nav-link' rel="noreferrer">
-                                Login
-                            </a>
+                        <li class = 'nav-item'>
+                            <a class="nav-link" href="{% url 'logout' %}"> Logout <span class="sr-only">(current)</span></a>
                         </li>
-                    {% endif %}
-
-                  </ul>
-
-                </div>
-              </div>
-            </nav>
-          </header>
-
-          <!-- Content block -->
-
-              {% block content %}
-              {% endblock  %}
-
-
-         <footer class="site-footer">
-        <div class="container">
-          <div class="row mb-5">
-            <div class="col-md-4">
-              <h3>About Us</h3>
-              <p class="mb-4">
-                <img src="{% static 'images/neuralnet1.jpg' %}" alt="Image placeholder" class="img-fluid">
-              </p>
-              </div>
-            <div class="col-md-6 ml-auto">
-              <div class="row">
-
-                <div class="col-md-4">
-
-                  <div class="mb-5">
-                    <h3>Quick Links</h3>
-                    <ul class="list-unstyled">
-                      <li><a href="{% url 'home' %}" rel="noreferrer">Home</a></li>
-                      <li><a href="#" rel="noreferrer">Vehicles</a></li>
-                      <li><a href="#" rel="noreferrer">Real Estate</a></li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}"> Login <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'new_user' %}"> Signup <span class="sr-only">(current)</span></a>
+                        </li>
+                        {% endif%}
                     </ul>
-                  </div>
+                </div>
+            </div>
+        </nav>
+        {% block bodyblock %}
+        {% endblock %}
 
+
+
+        <!-- Footer-->
+        <footer class="page-footer font-small blue pt-4">
+
+          <!-- Footer Links -->
+            <div class="container text-center text-md-left">
+
+            <!-- Grid row -->
+                <div class="row">
+
+              <!-- Grid column -->
+                    <div class="col-md-4 mt-md-0 mt-3">
+
+                <!-- Content -->
+                        <p>Resale Value Management and Prediction</p>
+
+                    </div>
+              <!-- Grid column -->
+
+                    <hr class="clearfix w-100 d-md-none pb-3">
+
+              <!-- Grid column -->
+                    <div class="col-md-2 mb-md-0 mb-3">
+
+                <!-- Links -->
+                        <h5 class="text-uppercase">Pages</h5>
+
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="aboutus.html" target="_blank" rel="noreferrer">About Us</a>
+                            </li>
+                            <li>
+                                <a href="achievements.html" target="_blank" rel="noreferrer">Real Estates</a>
+                            </li>
+                            <li>
+                                <a href="thoughts.html" target="_blank" rel="noreferrer">Vehicles</a>
+                            </li>
+                            <li>
+                                <a href="projects.html" target="_blank" rel="noreferrer">Login</a>
+                            </li>
+                        </ul>
+
+                    </div>
 
                 </div>
-              </div>
+            <!-- Grid row -->
+
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 text-center">
-              <p class="small">
-            </p>
-            </div>
-          </div>
-        </div>
-      </footer>
+          <!-- Footer Links -->
 
-               </div>
+          <!-- Copyright -->
+              <!-- Copyright -->
+            <!-- Footer -->
+        </footer>
+        <!--Footer-->
 
-      <!-- loader -->
-
-
-        <!-- script src="https://code.jquery.com/jquery-3.5.1.min.js"></script -->
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.3.0/jquery-migrate.min.js"></script>
-        <!-- script async src="{% static 'js/popper.min.js' %}"></script -->
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <!-- script src="{% static 'js/bootstrap.min.js' %}"></script -->
-        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-        <script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
-        <script src="{% static 'js/jquery.stellar.min.js' %}"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="{% static 'js/main.js' %}"></script>
+        <!-- Bootstrap core JS-->
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Contact form JS-->
+        <script src="{% static 'assets/mail/jqBootstrapValidation.js' %}"></script>
+        <script src="{% static 'assets/mail/contact_me.js' %}"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>
     </body>
 </html>

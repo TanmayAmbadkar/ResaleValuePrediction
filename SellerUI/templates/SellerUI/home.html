@@ -1,49 +1,19 @@
 {% extends "SellerUI/base.html" %}
 {%  load static %}
 
-{% block content %}
-<section class="site-section pt-5 pb-5">
-    <div class="container">
-
-      <div class="row blog-entries">
-
-
-        <!-- END main-content -->
-        <div class="col-md-12 col-lg-6 sidebar">
-          <!-- END sidebar-box -->
-
-          <div class="sidebar-box">
-            <div class="bio text-center">
-                <a href="#"><img src="{% static 'images/anim.jpeg' %}" loading="lazy" alt="Image Placeholder" class="img-fluid"></a>
-                <div class="bio-body">
-                  </br>
-                  <h2>Animesh Gupta</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-              </div>
-            </div>
-          </div>
+{% block bodyblock %}
+<header class="masthead bg-primary text-white text-center">
+    <div class="container d-flex align-items-center flex-column">
+        <h1>Resale Value Management</h1>
+        <h1>and Prediction</h1>
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-line"></div>
         </div>
+        <p class = 'lead'>This project maintains Real Estates and Vehicles that people want to sell. It also helps resellers by predicting a price for their commodity using Machine Learning. </p>
+        <!-- Icon Divider-->
 
-        <div class="col-md-12 col-lg-6 sidebar">
-          <!-- END sidebar-box -->
-
-          <div class="sidebar-box">
-            <div class="bio text-center">
-                <a href="#"><img src="{% static 'images/tanmay.jpg' %}" loading="lazy" alt="Image Placeholder" class="img-fluid"></a>
-                <div class="bio-body">
-                  </br>
-                  <h2>Tanmay Ambadkar</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
     </div>
-  </section>
-
+</header>
 
 {% endblock  %}
