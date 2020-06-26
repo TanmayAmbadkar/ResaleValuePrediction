@@ -12,6 +12,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     phone_number = models.CharField(max_length=10)
     type = models.CharField(max_length = 1, choices = user_types)
+    profile_image = models.ImageField(upload_to = 'profile_pics', null = True)
 
 
     def __str__(self):

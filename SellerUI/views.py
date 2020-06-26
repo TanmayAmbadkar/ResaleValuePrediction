@@ -35,6 +35,7 @@ class CreateVehicleView(LoginRequiredMixin, CreateView):
         profile = Profile.objects.get_or_create(user = self.request.user)[0]
         print(profile)
         form.instance.seller = profile
+        print(form.instance.photo)
         form.instance.publish()
         form.instance.save()
         return super().form_valid(form)

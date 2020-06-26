@@ -1,0 +1,32 @@
+{% extends 'SellerUI/base.html' %}
+{% load static %}
+
+{% block bodyblock %}
+
+<br>
+<br>
+<h1 style = 'text-align:center;'>Details of Vehicle</h1>
+<div class="container">
+
+    <ul class="list-group list-group-flush" >
+      <img src="/media/{{vehicle.photo}}" alt="abc" class="img-fluid">
+      <li class="list-group-item">Seller Name : <a href="#">{{vehicle.seller.user.first_name}} {{vehicle.seller.user.last_name}}</a></li>
+      <li class="list-group-item">Seller phone_number : {{estate.broker.phone_number}}</li>
+      <li class="list-group-item">Make : {{vehicle.make}}</li>
+      <li class="list-group-item">Mileage : {{vehicle.mileage}}</</li>
+      <li class="list-group-item">Year of Purchase : {{vehicle.year}}</li>
+      <li class="list-group-item">Type of Fueltank : {{vehicle.fueltank}}</li>
+      <li class="list-group-item">Vehicle : {{vehicle.price}}</li>
+
+      <li class="list-group-item">Description: {{vehicle.desc|safe|linebreaksbr}}</li>
+
+    </ul>
+</div>
+
+
+
+
+
+
+
+{% endblock %}

@@ -3,26 +3,23 @@
 
 {% block bodyblock %}
 
-        </br>
-        </br>
-        </br>
-        <h1 style = 'text-align:center;'>List of Vehicles</h1>
-        </br>
-        <div class="list-group" style="margin-left:30%; margin-right:30%;">
-        {% for vehicle in vehicle_list%}
-          <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-2 h5">{{vehicle.make}} {{vehicle.Vmodel}}</h5>
-              <small>{{vehicle.published_date}}</small>
-            </div>
-            <p class="mb-2">Rs{{vehicle.price}}</p>
-            <small>{{vehicle.description}}</small>
-          </a>
-          {% empty%}
-              <h5 class='font-color'>No vehicles registered yet</h5>
-          {% endfor %}
-
-
+    </br>
+    </br>
+    <h1 style = 'text-align:center;'>List of Vehicles</h1>
+    </br>
+    <div class="list-group" style="margin-left:30%; margin-right:30%;">
+    {% for vehicle in vehicle_list%}
+      <a href="{% url 'vehicle_detail' pk=vehicle.pk%}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-2 h5">{{vehicle.make}} {{vehicle.Vmodel}}</h5>
+          <small>{{vehicle.published_date}}</small>
+        </div>
+        <p class="mb-2">Rs{{vehicle.price}}</p>
+        <small>{{vehicle.description}}</small>
+      </a>
+      {% empty%}
+          <h5 class='font-color'>No vehicles registered yet</h5>
+      {% endfor %}
 
         <div class="pagination centre-align">
             <span class="step-links centre-align">
@@ -40,13 +37,13 @@
                     <a class='btn btn-outline medium-font' href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
                 {% endif %}
             </span>
-            {% if user.is_authenticated%}
-            <a href="{% url 'new_estate' %}">
-            <button type='button' class='btn btn-outline bigger-font '>Add new estate</button></a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'vehicle_new' %}">
+            <button type='button' class='btn btn-outline bigger-font '>Add new vehicle</button></a>
         {% endif%}
         </div>
 
-        </br>
+    </br>
 
     </div>
 {% endblock %}

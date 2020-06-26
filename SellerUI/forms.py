@@ -8,7 +8,7 @@ class VehicleForm(forms.ModelForm):
 
         model = Vehicle
         fields = ('Vmodel', 'make', 'desc', 'mileage',
-                  'year', 'fueltank', 'price')
+                  'year', 'fueltank', 'price', 'photo')
 
         widgets = {
             'desc' : SummernoteWidget()

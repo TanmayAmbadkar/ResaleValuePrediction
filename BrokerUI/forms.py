@@ -6,7 +6,7 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ['type','phone_number']
+        fields = ['type','phone_number', 'profile_image']
 
 class UserForm(forms.ModelForm):
 
