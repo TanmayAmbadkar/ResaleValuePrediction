@@ -13,7 +13,7 @@ we localised our search to vadodara only, had about 1500 rows of data for each, 
   - Finding resale values of vehicles and properties based on a few parameters
 
 
-### Tech
+# Tech
 
  uses the following:
 
@@ -25,7 +25,7 @@ we localised our search to vadodara only, had about 1500 rows of data for each, 
 * joblib - For saving and loading the model
 
 
-### Installation
+# Installation
 ResaleValuePrediction requires django 3.0 to run.
 
 For linux users
