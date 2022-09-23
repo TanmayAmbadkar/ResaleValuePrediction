@@ -157,7 +157,7 @@ pluggy==0.13.1
 ply==3.11
 prometheus-client==0.7.1
 prompt-toolkit==3.0.4
-protobuf==3.11.4
+protobuf==3.18.3
 psutil==5.7.0
 py==1.8.1
 pyahocorasick==1.1.8
